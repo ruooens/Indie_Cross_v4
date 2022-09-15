@@ -3266,7 +3266,7 @@ class PlayState extends MusicBeatState
 			parry.alpha = 0.9;
 			parry.x = strum.x;
 			parry.y = strum.y;
-            parry.playAnim('ParryFX');
+            parry.playAnim('ParryFX', false);
 			FlxG.sound.play(Paths.sound('parry', 'weekcup'));
 			parry.animation.finishCallback = function(name:String) parry.kill();
 		}
