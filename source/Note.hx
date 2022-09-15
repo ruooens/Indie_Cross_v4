@@ -98,6 +98,14 @@ class Note extends FlxSprite
 						missHealth = 0.3;
 					}
 					hitCausesMiss = true;
+				case 'Parry Note':
+					ignoreNote = true;
+					reloadNote('PARRY');
+					noteSplashTexture = 'PARRYnoteSplashes';
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					hitCausesMiss = false;
 				case 'No Animation':
 					noAnimation = true;
 			}
