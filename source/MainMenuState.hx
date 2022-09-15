@@ -354,17 +354,16 @@ class MainMenuState extends MusicBeatState
 			switch (str)
 			{
 				case "storymode":
-					StoryMenuState.fromWeek = -1;
-					Main.switchState(new StoryMenuState());
+					MusicBeatState.switchState(new StoryMenuState());
 				case "freeplay":
-					Main.switchState(new FreeplayState());
+					MusicBeatState.switchState(new FreeplayState());
 				case "options":
-					FlxG.sound.music.stop();
-					Main.switchState(new options.OptionsState());
+					// FlxG.sound.music.stop();
+					MusicBeatState.switchState(new options.OptionsState());
 				case "credits":
-					Main.switchState(new CreditsState());
+					MusicBeatState.switchState(new CreditsState());
 				case "achievements":
-					Main.switchState(new AchievementsMenuState());
+					MusicBeatState.switchState(new AchievementsMenuState());
 			}
 		});
 	}
