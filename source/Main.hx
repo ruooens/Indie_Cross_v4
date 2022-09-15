@@ -20,6 +20,8 @@ class Main extends Sprite
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 	public static var fpsVar:FPS;
 
+	public static var focusMusicTween:FlxTween;
+
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
 	public static function main():Void
@@ -50,6 +52,70 @@ class Main extends Sprite
 
 		setupGame();
 	}
+
+	var oldVol:Float = 1.0;
+	var newVol:Float = 0.3;
+
+	public static var focused:Bool = true;
+
+	// thx for ur code ari
+	function onWindowFocusOut()
+	{
+		focused = false;
+
+		// Lower global volume when unfocused
+		if (Type.getClass(FlxG.state) != PlayState) // imagine stealing my code smh
+		{
+			oldVol = FlxG.sound.volume;
+			if (oldVol > 0.3)
+			{
+				newVol = 0.3;
+			}
+			else
+			{
+				if (oldVol > 0.1)
+				{
+					newVol = 0.1;
+				}
+				else
+				{
+					newVol = 0;
+				}
+			}
+
+			trace("Game unfocused");
+
+			if (focusMusicTween != null)
+				focusMusicTween.cancel();
+			focusMusicTween = FlxTween.tween(FlxG.sound, {volume: newVol}, 0.5);
+
+			// Conserve power by lowering draw framerate when unfocuced
+			FlxG.drawFramerate = 60;
+		}
+	}
+
+	function onWindowFocusIn()
+	{
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			focused = true;
+		});
+
+		// Lower global volume when unfocused
+		if (Type.getClass(FlxG.state) != PlayState)
+		{
+			trace("Game focused");
+
+			// Normal global volume when focused
+			if (focusMusicTween != null)
+				focusMusicTween.cancel();
+
+			focusMusicTween = FlxTween.tween(FlxG.sound, {volume: oldVol}, 0.5);
+
+			// Bring framerate back when focused
+			FlxG.drawFramerate = ClientPrefs.framerate;
+		}
+	}	
 
 	private function setupGame():Void
 	{
