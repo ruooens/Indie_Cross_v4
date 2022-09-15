@@ -231,13 +231,13 @@ class TitleState extends MusicBeatState
 		}
 		//trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path)){
-			path = "assets/images/logoBumpin.png";
+			path = "assets/images/BF.png";
 		}
 		//trace(path, FileSystem.exists(path));
 		logoBl.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
 		#else
 		
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl.frames = Paths.getSparrowAtlas('BF');
 		#end
 		
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
