@@ -2934,6 +2934,8 @@ class PlayState extends MusicBeatState
 						}
 					});
 				}
+			case 'Last Reel Event':
+				healthSet(0.01, 10);
 		}
 		callOnLuas('onEvent', [eventName, value1, value2]);
 	}
