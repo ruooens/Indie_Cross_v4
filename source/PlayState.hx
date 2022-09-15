@@ -638,11 +638,6 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
 				GameOverSubstate.characterName = 'bf-pixel-dead';
 
-				/*if(!ClientPrefs.lowQuality) { //Does this even do something?
-					var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
-					var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
-				}*/
-
 				var posX = 400;
 				var posY = 200;
 				if(!ClientPrefs.lowQuality) {
@@ -3265,6 +3260,17 @@ class PlayState extends MusicBeatState
 			spawnNoteSplashOnNote(note);
 		}
 
+		if (note.noteType == 'Parry Note'){
+			var parry:FlxSprite = new FlxSprite().loadGraphic(Paths.image('Parry_assets', 'shared'));
+			var strum:StrumNote = playerStrums.members[note.noteData];
+			parry.alpha = 0.9;
+			parry.x = strum.x;
+			parry.y = strum.y;
+            parry.playAnim('ParryFX');
+			FlxG.sound.play(Paths.sound('parry', 'weekcup'));
+			parry.animation.finishCallback = function(name:String) parry.kill();
+		}
+
 		if(!practiceMode && !cpuControlled) {
 			songScore += score;
 			songHits++;
@@ -3745,9 +3751,9 @@ class PlayState extends MusicBeatState
 		{
 			if(cpuControlled && (note.ignoreNote || note.hitCausesMiss)) return;
 
-			if (note.noteType == 'Parry Note') {
+			/*if (note.noteType == 'Parry Note') {
 				FlxG.sound.play(Paths.sound('parry', 'weekcup'));
-			}
+			}*/
 
 			if(note.hitCausesMiss) {
 				noteMiss(note);
