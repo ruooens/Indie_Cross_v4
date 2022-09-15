@@ -3260,18 +3260,6 @@ class PlayState extends MusicBeatState
 			spawnNoteSplashOnNote(note);
 		}
 
-		if (note.noteType == 'Parry Note'){
-			var parry:FlxSprite = new FlxSprite().loadGraphic(Paths.image('Parry_assets', 'shared'));
-			var strum:StrumNote = playerStrums.members[note.noteData];
-			parry.alpha = 0.9;
-			parry.x = strum.x;
-			parry.y = strum.y;
-			parry.animation.addByPrefix("parry", "ParryFX", 24, false);
-            parry.animation.play('parry', false, false, 0);
-			FlxG.sound.play(Paths.sound('parry', 'weekcup'));
-			parry.animation.finishCallback = function(name:String) parry.kill();
-		}
-
 		if(!practiceMode && !cpuControlled) {
 			songScore += score;
 			songHits++;
@@ -3778,6 +3766,19 @@ class PlayState extends MusicBeatState
 					note.destroy();
 				}
 				return;
+			} else {
+				switch (note.noteType) {
+					case 'Parry Note':
+					var parry:FlxSprite = new FlxSprite().loadGraphic(Paths.image('Parry_assets', 'shared'));
+					var strum:StrumNote = playerStrums.members[note.noteData];
+					parry.alpha = 0.9;
+					parry.x = strum.x;
+					parry.y = strum.y;
+					parry.animation.addByPrefix("parry", "ParryFX", 24, false);
+					parry.animation.play('parry', false, false, 0);
+					FlxG.sound.play(Paths.sound('parry', 'weekcup'));
+					parry.animation.finishCallback = function(name:String) parry.kill();
+				}
 			}
 
 			if (!note.isSustainNote)

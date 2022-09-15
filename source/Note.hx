@@ -106,6 +106,24 @@ class Note extends FlxSprite
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 					hitCausesMiss = false;
+				case 'SansBlue':
+					ignoreNote = true;
+					reloadNote('BBONE');
+					noteSplashDisabled = true;
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					hitCausesMiss = true;
+					missHealth = 1.0;
+				case 'SansOrange':
+					ignoreNote = false;
+					reloadNote('OBONE');
+					noteSplashDisabled = true;
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					hitCausesMiss = false;
+					missHealth = 1.0;
 				case 'No Animation':
 					noAnimation = true;
 			}
