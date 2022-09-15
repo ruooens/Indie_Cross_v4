@@ -3779,7 +3779,7 @@ class PlayState extends MusicBeatState
 
 			if(!note.noAnimation) {
 				if (note.noteType == 'Parry Note') {
-					FlxG.sound.play(Paths.sound('parry', 'weekcup')); // why do you not work
+					FlxG.sound.play(Paths.sound('parry', 'weekcup'));
 				}
 				var daAlt = '';
 				if(note.noteType == 'Alt Animation') daAlt = '-alt';
