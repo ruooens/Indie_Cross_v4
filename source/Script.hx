@@ -1,4 +1,4 @@
-package song;
+package;
 
 import flixel.FlxBasic;
 import hscript.Interp;
