@@ -22,6 +22,7 @@ import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 import Shaders.WhiteOverlayShader;
 import flixel.util.FlxTimer;
+import openfl.Lib;
 
 using StringTools;
 
