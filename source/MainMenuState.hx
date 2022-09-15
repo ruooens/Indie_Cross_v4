@@ -33,6 +33,8 @@ class MainMenuState extends MusicBeatState
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
 	var disableInput:Bool = false;
+
+	public static final daScaling:Float = 0.675;
 	
 	var menuStrings:Array<String> = [
 		'storymode',
