@@ -3745,6 +3745,10 @@ class PlayState extends MusicBeatState
 		{
 			if(cpuControlled && (note.ignoreNote || note.hitCausesMiss)) return;
 
+			if (note.noteType == 'Parry Note'){
+				FlxG.sound.play(Paths.sound('parry', 'weekcup');
+			}
+
 			if(note.hitCausesMiss) {
 				noteMiss(note);
 				if(!note.noteSplashDisabled && !note.isSustainNote) {
