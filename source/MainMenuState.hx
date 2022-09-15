@@ -39,6 +39,10 @@ class MainMenuState extends MusicBeatState
 	var menuPosTweens:Array<FlxTween>;
 	static final buttonRevealRange:Float = 50;
 	static final menuItemTweenOptions:TweenOptions = {ease: FlxEase.circOut};
+
+	// both from project.xml
+	final name:String = Lib.application.meta["name"];
+	final version:String = Lib.application.meta["version"];
 	
 	var menuStrings:Array<String> = [
 		'storymode',
@@ -352,12 +356,12 @@ class MainMenuState extends MusicBeatState
 					StoryMenuState.fromWeek = -1;
 					Main.switchState(new StoryMenuState());
 				case "freeplay":
-					Main.switchState(new FreeplaySelect());
+					Main.switchState(new FreeplayState());
 				case "options":
 					FlxG.sound.music.stop();
-					Main.switchState(new OptionsMenu());
+					Main.switchState(new options.OptionsState());
 				case "credits":
-					Main.switchState(new CreditsMenu());
+					Main.switchState(new CreditsState());
 				case "achievements":
 					Main.switchState(new AchievementsMenuState());
 			}
