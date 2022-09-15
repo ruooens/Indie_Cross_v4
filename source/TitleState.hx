@@ -48,6 +48,10 @@ class TitleState extends MusicBeatState
 	var playBttn:FlxSprite;
 	var bfSpr:FlxSprite;
 
+	var blackOverlay:FlxSprite;
+
+	var resizeConstant:Float = 1.196;
+
 	override public function create():Void
 	{
 		#if MODS_ALLOWED
