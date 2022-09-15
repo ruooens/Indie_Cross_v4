@@ -9,6 +9,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
 
 class Main extends Sprite
 {
