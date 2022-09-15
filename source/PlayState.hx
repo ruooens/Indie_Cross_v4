@@ -4482,6 +4482,12 @@ class PlayState extends MusicBeatState
 				return FlxColor.fromRGB(Red, Green, Blue, Alpha);
 			});
 
+			script.setVariable("healthSet", function(amt:Float, duration:Float)
+			{
+				@:privateAccess // wanted to find an way to use this
+				return healthSet(amt, duration);
+			});
+
 			script.setVariable("curStep", curStep);
 			script.setVariable("bpm", SONG.bpm);
 
