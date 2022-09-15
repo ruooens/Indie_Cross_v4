@@ -34,6 +34,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
+import flash.display.BlendMode;
 
 using StringTools;
 
@@ -245,8 +246,14 @@ class TitleState extends MusicBeatState
 
 		new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
-			Main.switchState(new MainMenuState());
+			MusicBeatState.switchState(new MainMenuState());
 		});
+	}
+
+	function flash(color:FlxColor, duration:Float)
+	{
+		FlxG.camera.stopFX();
+		FlxG.camera.flash(color, duration);
 	}
 
 	override function beatHit()
