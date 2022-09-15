@@ -51,6 +51,7 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
+import Script;
 
 #if sys
 import sys.FileSystem;
@@ -263,6 +264,9 @@ class PlayState extends MusicBeatState
 
 	var healthTweenObj:FlxTween;
 
+	// Hscript
+	public var hscript:Script;
+
 	override public function create()
 	{
 		#if MODS_ALLOWED
@@ -313,6 +317,11 @@ class PlayState extends MusicBeatState
 		CustomFadeTransition.nextCamera = camOther;
 		//FlxG.cameras.setDefaultDrawTarget(camGame, true);
 
+		if (script != null)
+		{
+			script.executeFunc("onCreate");
+		}
+
 		persistentUpdate = true;
 		persistentDraw = true;
 
@@ -321,6 +330,8 @@ class PlayState extends MusicBeatState
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
+
+		startScript();
 
 		healthTweenObj = FlxTween.tween(this, {}, 0);
 
@@ -1449,6 +1460,11 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
+		if (script != null)
+		{
+			script.executeFunc("onStartCountdown");
+		}
+
 		inCutscene = false;
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
 		if(ret != FunkinLua.Function_Stop) {
@@ -1589,7 +1605,6 @@ class PlayState extends MusicBeatState
 				callOnLuas('onCountdownTick', [swagCounter]);
 
 				swagCounter += 1;
-				// generateSong('fresh');
 			}, 5);
 		}
 	}
@@ -1628,6 +1643,11 @@ class PlayState extends MusicBeatState
 		songLength = FlxG.sound.music.length;
 		FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 		FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+
+		if (script != null)
+		{
+			script.executeFunc("onSongStart");
+		}
 		
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
@@ -2525,6 +2545,10 @@ class PlayState extends MusicBeatState
 		setOnLuas('botPlay', cpuControlled);
 		callOnLuas('onUpdatePost', [elapsed]);
 		#end
+		if (script != null)
+		{
+			script.executeFunc("onUpdate");
+		}
 	}
 
 	public var isDead:Bool = false; //Don't mess with this on Lua!!!
@@ -4051,6 +4075,12 @@ class PlayState extends MusicBeatState
 			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		}
+		if (script != null)
+		{
+			script.executeFunc("destroy");
+
+			script.destroy();
+		}
 		super.destroy();
 	}
 
@@ -4078,6 +4108,12 @@ class PlayState extends MusicBeatState
 
 		if(curStep == lastStepHit) {
 			return;
+		}
+
+		if (script != null)
+		{
+			script.setVariable("curStep", curStep);
+			script.executeFunc("onStepHit");
 		}
 
 		lastStepHit = curStep;
@@ -4391,5 +4427,85 @@ class PlayState extends MusicBeatState
 		{
 			health = v;
 		});
+	}
+
+	public function startScript()
+	{
+		var formattedFolder:String = Paths.formatToSongPath(SONG.song);
+
+		var path:String = Paths.hscript(formattedFolder + '/script');
+
+		var hxdata:String = "";
+
+		if (OpenFlAssets.exists(path))
+			hxdata = OpenFlAssets.getText(path);
+
+		if (hxdata != "")
+		{
+			script = new Script();
+
+			script.setVariable("onSongStart", function()
+			{
+			});
+
+			script.setVariable("destroy", function()
+			{
+			});
+
+			script.setVariable("onCreate", function()
+			{
+			});
+
+			script.setVariable("onStartCountdown", function()
+			{
+			});
+
+			script.setVariable("onStepHit", function()
+			{
+			});
+
+			script.setVariable("onUpdate", function()
+			{
+			});
+
+			script.setVariable("import", function(lib:String, ?as:Null<String>) // Does this even work?
+			{
+				if (lib != null && Type.resolveClass(lib) != null)
+				{
+					script.setVariable(as != null ? as : lib, Type.resolveClass(lib));
+				}
+			});
+
+			script.setVariable("fromRGB", function(Red:Int, Green:Int, Blue:Int, Alpha:Int = 255)
+			{
+				return FlxColor.fromRGB(Red, Green, Blue, Alpha);
+			});
+
+			script.setVariable("curStep", curStep);
+			script.setVariable("bpm", SONG.bpm);
+
+			// PRESET CLASSES
+			// you can add your own if you want to
+			script.setVariable("PlayState", instance);
+			script.setVariable("FlxTween", FlxTween);
+			script.setVariable("FlxEase", FlxEase);
+			script.setVariable("FlxSprite", FlxSprite);
+			script.setVariable("Math", Math);
+			script.setVariable("FlxG", FlxG);
+			script.setVariable("ClientPrefs", ClientPrefs);
+			script.setVariable("FlxTimer", FlxTimer);
+			script.setVariable("Main", Main);
+			script.setVariable("Event", Event);
+			script.setVariable("Conductor", Conductor);
+			script.setVariable("Std", Std);
+			script.setVariable("FlxTextBorderStyle", FlxTextBorderStyle);
+			script.setVariable("Paths", Paths);
+			script.setVariable("CENTER", FlxTextAlign.CENTER);
+			script.setVariable("FlxTextFormat", FlxTextFormat);
+			script.setVariable("InputFormatter", InputFormatter);
+			script.setVariable("FlxTextFormatMarkerPair", FlxTextFormatMarkerPair);
+
+			script.runScript(hxdata);
+		}
 	}
 }

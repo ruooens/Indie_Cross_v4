@@ -133,6 +133,11 @@ class Paths
 		return getPath('$key.lua', TEXT, library);
 	}
 
+	inline static public function hscript(key:String, ?library:String)
+	{
+		return getPath('data/$key.hx', TEXT, library);
+	}
+
 	static public function video(key:String)
 	{
 		#if MODS_ALLOWED
