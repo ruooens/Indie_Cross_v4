@@ -267,13 +267,6 @@ class PlayState extends MusicBeatState
 
 	// Hscript
 	public var script:Script;
-	
-	public var setCurHealth(default, set):Float
-
-	function set_setCurHealth(a:Float, d:Float):Float
-	{
-		return healthSet(a, d);
-	}
 
 	override public function create()
 	{
