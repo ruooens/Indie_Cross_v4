@@ -154,7 +154,7 @@ class TitleState extends MusicBeatState
 		blackOverlay.updateHitbox();
 		blackOverlay.screenCenter();
 		blackOverlay.scrollFactor.set();
-		add(blackOverlay);
+		// add(blackOverlay);
 
 		// end of indie cross shit				
 

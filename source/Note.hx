@@ -101,7 +101,7 @@ class Note extends FlxSprite
 				case 'Parry Note':
 					ignoreNote = true;
 					reloadNote('PARRY');
-					noteSplashTexture = 'PARRYnoteSplashes';
+					// noteSplashTexture = 'PARRYnoteSplashes';
 					colorSwap.hue = 0;
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
