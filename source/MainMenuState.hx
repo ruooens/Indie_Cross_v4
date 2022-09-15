@@ -21,6 +21,7 @@ import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 import Shaders.WhiteOverlayShader;
+import flixel.util.FlxTimer;
 
 using StringTools;
 
@@ -35,6 +36,8 @@ class MainMenuState extends MusicBeatState
 	var disableInput:Bool = false;
 
 	public static final daScaling:Float = 0.675;
+	var menuPosTweens:Array<FlxTween>;
+	static final buttonRevealRange:Float = 50;
 	
 	var menuStrings:Array<String> = [
 		'storymode',
@@ -117,8 +120,6 @@ class MainMenuState extends MusicBeatState
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 		}
-
-		FlxG.camera.follow(camFollowPos, null, 1);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
