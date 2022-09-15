@@ -38,6 +38,7 @@ class MainMenuState extends MusicBeatState
 	public static final daScaling:Float = 0.675;
 	var menuPosTweens:Array<FlxTween>;
 	static final buttonRevealRange:Float = 50;
+	static final menuItemTweenOptions:TweenOptions = {ease: FlxEase.circOut};
 	
 	var menuStrings:Array<String> = [
 		'storymode',
