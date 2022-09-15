@@ -265,7 +265,7 @@ class PlayState extends MusicBeatState
 	var healthTweenObj:FlxTween;
 
 	// Hscript
-	public var hscript:Script;
+	public var script:Script;
 
 	override public function create()
 	{
