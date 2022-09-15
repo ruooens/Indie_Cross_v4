@@ -4511,6 +4511,7 @@ class PlayState extends MusicBeatState
 			script.setVariable("FlxTextFormat", FlxTextFormat);
 			script.setVariable("InputFormatter", InputFormatter);
 			script.setVariable("FlxTextFormatMarkerPair", FlxTextFormatMarkerPair);
+			script.setVariable("Type", Type);
 
 			script.runScript(hxdata);
 		}
