@@ -271,6 +271,7 @@ class MainMenuState extends MusicBeatState
 			if (controls.ACCEPT)
 			{
 				disableInput = true;
+				FlxG.sound.play(Paths.sound('confirmMenu'));
 				if (curSelected == 0)
 				{
 					FlxTween.tween(story_modeSplash, {alpha: 1}, 0.1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) { FlxTween.tween(story_modeSplash, {alpha: 0}, 0.4, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) { goToState(); }}); }});
@@ -330,19 +331,16 @@ class MainMenuState extends MusicBeatState
 
 	function changeItem(huh:Int = 0)
 	{
-		if (huh != curSelected)
-		{
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-		}
+		curSelected += huh;
 
-		if (huh < 0)
-			huh = menuStrings.length - 1;
-		if (huh >= menuStrings.length)
-			huh = 0;
+		if (curSelected >= menuStrings.length)
+			curSelected = 0;
+		if (curSelected < 0)
+			curSelected = menuStrings.length - 1;
 
 		switch (menuStrings[curSelected])
 		{
-			case 'Story_mode':
+			case 'storymode':
 				story_mode.alpha = 1;
 				freeplay.alpha = 0.6;
 				awards.alpha = 0.6;
