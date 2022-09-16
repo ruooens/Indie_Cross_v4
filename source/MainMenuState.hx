@@ -28,7 +28,7 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var psychEngineVersion:String = ' 0.5'; //This is also used for Discord RPC
+	public static var psychEngineVersion:String = '0.5'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -37,9 +37,7 @@ class MainMenuState extends MusicBeatState
 	var disableInput:Bool = false;
 
 	public static final daScaling:Float = 0.675;
-	var menuPosTweens:Array<FlxTween>;
 	static final buttonRevealRange:Float = 50;
-	static final menuItemTweenOptions:TweenOptions = {ease: FlxEase.circOut};
 
 	// both from project.xml
 	final name:String = Lib.application.meta["name"];
@@ -53,7 +51,6 @@ class MainMenuState extends MusicBeatState
 		#if ACHIEVEMENTS_ALLOWED 'awards' #end
 	];
 	var debugKeys:Array<FlxKey>;
-
 
 	var story_mode:FlxSprite;
 	var freeplay:FlxSprite;
