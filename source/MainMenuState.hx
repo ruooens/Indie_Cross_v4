@@ -50,7 +50,7 @@ class MainMenuState extends MusicBeatState
 		'freeplay',
 		'options',
 		'credits',
-		#if ACHIEVEMENTS_ALLOWED 'awards', #end
+		#if ACHIEVEMENTS_ALLOWED 'awards' #end
 	];
 	var debugKeys:Array<FlxKey>;
 
