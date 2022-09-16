@@ -228,9 +228,11 @@ class MainMenuState extends MusicBeatState
 			if (i == huh)
 			{
 				menuItem.alpha = 1.0;
-				if (menuPosTweens[i] != null)
-				{
-					menuPosTweens[i].cancel();
+				for (j in menuPosTweens){
+					if (j != null)
+					{
+						j.cancel();
+					}
 				}
 				if (str == "achievements")
 					menuPosTweens[i] = FlxTween.tween(menuItem, {x: 1280 - menuItem.width}, 0.2, menuItemTweenOptions);
@@ -241,9 +243,11 @@ class MainMenuState extends MusicBeatState
 			{
 				if (menuItem.alpha == 1.0)
 				{
-					if (menuPosTweens[i] != null)
-					{
-						menuPosTweens[i].cancel();
+					for (j in menuPosTweens){
+						if (j != null)
+						{
+							j.cancel();
+						}
 					}
 				}
 				
