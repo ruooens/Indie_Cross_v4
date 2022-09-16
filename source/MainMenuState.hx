@@ -232,6 +232,8 @@ class MainMenuState extends MusicBeatState
 					if (j != null)
 					{
 						j.cancel();
+						j = [];
+						j = null;
 					}
 				}
 				if (str == "achievements")
@@ -247,6 +249,8 @@ class MainMenuState extends MusicBeatState
 						if (j != null)
 						{
 							j.cancel();
+							j = [];
+							j = null;
 						}
 					}
 				}
