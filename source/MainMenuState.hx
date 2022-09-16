@@ -20,7 +20,7 @@ import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
-import Shaders.WhiteOverlayShader;
+// import Shaders.WhiteOverlayShader;
 import flixel.util.FlxTimer;
 import openfl.Lib;
 
@@ -290,7 +290,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.updateHitbox();
 			menuItem.alpha = 0.5;
 
-			menuItem.shader = new WhiteOverlayShader();
+			// menuItem.shader = new WhiteOverlayShader();
 
 			if (str == "achievements")
 			{
@@ -325,11 +325,11 @@ class MainMenuState extends MusicBeatState
 			menuPosTweens[curSelected] = FlxTween.tween(menuItem, {x: 0}, 0.4, menuItemTweenOptions);
 		}
 
-		menuItem.shader.data.progress.value = [1.0];
-		FlxTween.num(1.0, 0.0, 1.0, {ease: FlxEase.cubeOut}, function(num:Float)
-		{
-			menuItem.shader.data.progress.value = [num];
-		});
+		// menuItem.shader.data.progress.value = [1.0];
+		// FlxTween.num(1.0, 0.0, 1.0, {ease: FlxEase.cubeOut}, function(num:Float)
+		// {
+		// 	menuItem.shader.data.progress.value = [num];
+		// });
 
 		for (i in 0...menuItems.members.length)
 		{
