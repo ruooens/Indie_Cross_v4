@@ -368,6 +368,6 @@ class MainMenuState extends MusicBeatState
 				story_mode.alpha = 0.6;
 		}
 
-		curSelected = huh;
+		// curSelected = huh;
 	}
 }
