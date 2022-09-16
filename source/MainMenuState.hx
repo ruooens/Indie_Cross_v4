@@ -232,7 +232,7 @@ class MainMenuState extends MusicBeatState
 					if (j != null)
 					{
 						j.cancel();
-						j = [];
+						// j = [];
 						j = null;
 					}
 				}
@@ -249,7 +249,7 @@ class MainMenuState extends MusicBeatState
 						if (j != null)
 						{
 							j.cancel();
-							j = [];
+							// j = [];
 							j = null;
 						}
 					}
