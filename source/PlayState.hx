@@ -274,6 +274,9 @@ class PlayState extends MusicBeatState
 		Paths.destroyLoadedImages();
 		#end
 
+		if (ClientPrefs.middleScroll)
+			ClientPrefs.middleScroll = false;
+
 		// for lua
 		instance = this;
 
