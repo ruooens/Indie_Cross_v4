@@ -214,7 +214,6 @@ class MainMenuState extends MusicBeatState
 		add(versionShit);
 
 		changeItem();
-		generateButtons(270, 100);
 
 		#if ACHIEVEMENTS_ALLOWED
 		Achievements.loadAchievements();
@@ -271,6 +270,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
+				disableInput = true;
 				if (curSelected == 0)
 				{
 					FlxTween.tween(story_modeSplash, {alpha: 1}, 0.1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) { FlxTween.tween(story_modeSplash, {alpha: 0}, 0.4, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) { goToState(); }}); }});
@@ -318,7 +318,7 @@ class MainMenuState extends MusicBeatState
 		    case 'story_mode':
 		    MusicBeatState.switchState(new StoryMenuState());
 			case 'freeplay':
-				MusicBeatState.switchState(new FreeplaySelectState());
+				MusicBeatState.switchState(new FreeplayState());
 			case 'options':
 				LoadingState.loadAndSwitchState(new options.OptionsState());
 			case 'credits':
@@ -375,106 +375,5 @@ class MainMenuState extends MusicBeatState
 		}
 
 		curSelected = huh;
-	}
-
-	function generateButtons(yPos:Float, sep:Float)
-	{
-		if (menuItems == null)
-			return;
-
-		if (menuItems.members != null && menuItems.members.length > 0)
-			menuItems.forEach(function(_:FlxSprite) {menuItems.remove(_); _.destroy(); } );
-
-		menuPosTweens = new Array<FlxTween>();
-		
-		for (i in 0...menuStrings.length)
-		{
-			menuPosTweens.push(null);
-			
-			var str:String = menuStrings[i];
-
-			var menuItem:FlxSprite = new FlxSprite()
-				.loadGraphic(Paths.image("menu/buttons/" + str, "preload"));
-			menuItem.origin.set();
-			menuItem.scale.set(daScaling, daScaling);
-			menuItem.updateHitbox();
-			menuItem.alpha = 0.5;
-
-			// menuItem.shader = new WhiteOverlayShader();
-
-			if (str == "achievements")
-			{
-				menuItem.setPosition(1280 - menuItem.width + buttonRevealRange, 630);
-			}
-			else
-			{
-				menuItem.setPosition(-buttonRevealRange, yPos + (i * sep));
-			}
-			
-			menuItems.add(menuItem);
-		}
-	}
-
-	function enterSelection()
-	{
-		disableInput = true;
-		
-		var str:String = menuStrings[curSelected];
-		var menuItem:FlxSprite = menuItems.members[curSelected];
-
-		if (menuPosTweens[curSelected] != null)
-			menuPosTweens[curSelected].cancel();
-		if (str == "achievements")
-		{
-			menuItem.x = 1280 - menuItem.width + buttonRevealRange;
-			menuPosTweens[curSelected] = FlxTween.tween(menuItem, {x: 1280 - menuItem.width}, 0.4, menuItemTweenOptions);
-		}
-		else
-		{
-			menuItem.x = -buttonRevealRange;
-			menuPosTweens[curSelected] = FlxTween.tween(menuItem, {x: 0}, 0.4, menuItemTweenOptions);
-		}
-
-		// menuItem.shader.data.progress.value = [1.0];
-		// FlxTween.num(1.0, 0.0, 1.0, {ease: FlxEase.cubeOut}, function(num:Float)
-		// {
-		// 	menuItem.shader.data.progress.value = [num];
-		// });
-
-		for (i in 0...menuItems.members.length)
-		{
-			if (i != curSelected)
-			{
-				FlxTween.tween(menuItems.members[i], {alpha: 0}, 1, {ease: FlxEase.cubeOut});
-			}
-		}
-
-		if (str == 'options')
-		{
-			if (FlxG.sound.music != null)
-			{
-				FlxG.sound.music.fadeOut(1, 0);
-			}
-		}
-		
-		FlxG.sound.play(Paths.sound('confirmMenu'));
-
-		new FlxTimer().start(1, function(tmr:FlxTimer)
-		{
-			switch (str)
-			{
-				case "storymode":
-					MusicBeatState.switchState(new StoryMenuState());
-				case "freeplay":
-					MusicBeatState.switchState(new FreeplayState());
-				case "options":
-					// FlxG.sound.music.stop();
-					MusicBeatState.switchState(new options.OptionsState());
-				case "credits":
-					MusicBeatState.switchState(new CreditsState());
-				case "achievements":
-					MusicBeatState.switchState(new AchievementsMenuState());
-			}
-		});
 	}
 }
