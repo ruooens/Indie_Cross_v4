@@ -859,13 +859,13 @@ class PlayState extends MusicBeatState
 		underlayPlayer = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.BLACK);
 		underlayPlayer.scrollFactor.set();
 		underlayPlayer.alpha = ClientPrefs.underlayAlpha;
-		underlayPlayer.visible = false;
+		// underlayPlayer.visible = false;
 		add(underlayPlayer);
 
 		underlayOpponent = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.BLACK);
 		underlayOpponent.scrollFactor.set();
 		underlayOpponent.alpha = ClientPrefs.underlayAlpha;
-		underlayOpponent.visible = false;
+		// underlayOpponent.visible = false;
 		add(underlayOpponent);
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
