@@ -228,7 +228,7 @@ class MainMenuState extends MusicBeatState
 			if (i == huh)
 			{
 				menuItem.alpha = 1.0;
-				if (menuPosTweens[i] != null)
+				if (menuPosTweens[i] != null && menuItem.alpha == 1.0)
 				{
 					menuPosTweens[i].cancelChain();
 					menuPosTweens[i].destroy();
