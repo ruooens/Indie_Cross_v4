@@ -50,6 +50,10 @@ class CoolUtil
 		return Math.max(min, Math.min(max, value));
 	}
 
+	@:extern inline public function error(s:String){
+		throw s;
+	}
+
 	public static function coolTextFile(path:String):Array<String>
 	{
 		var daList:Array<String> = [];
