@@ -65,6 +65,9 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
+	var underlayPlayer:FlxSprite;
+	var underlayOpponent:FlxSprite;
+
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck!', 0.2], //From 0% to 19%
 		['Shit', 0.4], //From 20% to 39%
@@ -853,6 +856,18 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) strumLine.y = FlxG.height - 150;
 		strumLine.scrollFactor.set();
 
+		underlayPlayer = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.BLACK);
+		underlayPlayer.scrollFactor.set();
+		underlayPlayer.alpha = ClientPrefs.underlayAlpha;
+		underlayPlayer.visible = false;
+		add(underlayPlayer);
+
+		underlayOpponent = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.BLACK);
+		underlayOpponent.scrollFactor.set();
+		underlayOpponent.alpha = ClientPrefs.underlayAlpha;
+		underlayOpponent.visible = false;
+		add(underlayOpponent);
+
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
 		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1026,6 +1041,8 @@ class PlayState extends MusicBeatState
 		}
 
 		strumLineNotes.cameras = [camHUD];
+		underlayPlayer.cameras = [camHUD];
+		underlayOpponent.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
@@ -1856,6 +1873,10 @@ class PlayState extends MusicBeatState
 
 	private function generateStaticArrows(player:Int):Void
 	{
+		var underlay = underlayPlayer;
+		if (player == 0) {
+			underlay = underlayOpponent;
+		}
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
@@ -2493,7 +2514,14 @@ class PlayState extends MusicBeatState
 				boyfriend.dance();
 			}
 		}
-		
+
+		if (playerStrums.length > 0) {
+			underlayPlayer.x = playerStrums.members[0].x;
+		}
+		if (opponentStrums.length > 0) {
+			underlayOpponent.x = opponentStrums.members[0].x;
+		}
+
 		#if debug
 		if(!endingSong && !startingSong) {
 			if (FlxG.keys.justPressed.ONE) {

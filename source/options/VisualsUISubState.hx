@@ -41,6 +41,15 @@ class VisualsUISubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Lane Underlay Opacity', //Name
+			'Opacity of underlay of notes', //Description
+			'underlayAlpha', //Save data variable name
+			'int', //Variable type
+			0); //Default value
+		option.minValue = 0;
+		option.maxValue = 100;
+		addOption(option);
+
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
 			'hideHud',
