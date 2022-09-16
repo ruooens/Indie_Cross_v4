@@ -48,10 +48,9 @@ class MainMenuState extends MusicBeatState
 	var menuStrings:Array<String> = [
 		'storymode',
 		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
-		#if ACHIEVEMENTS_ALLOWED 'awards', #end
+		'options',
 		'credits',
-		'options'
+		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 	];
 	var debugKeys:Array<FlxKey>;
 
