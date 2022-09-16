@@ -32,7 +32,7 @@ class BendyBoy extends FlxSprite
 		switch (type)
 		{
 			case "piper":
-				frames = Paths.getSparrowAtlas("third/Piper" + suffix, "bendy");
+				frames = Paths.getSparrowAtlas("third/Piper" + suffix, "weekink");
 				animation.addByPrefix("walk", "pip walk instance 1", 24, true);
 				animation.addByPrefix("idle", "Piperr instance 1", 24, true);
 				animation.addByPrefix("hit", "Piper gets Hit instance 1", 24, false);
@@ -47,7 +47,7 @@ class BendyBoy extends FlxSprite
 				addOffset("preAttack", -40, 30);
 				addOffset("attack", 220, 200);
 			case "striker":
-				frames = Paths.getSparrowAtlas("third/Striker" + suffix, "bendy");
+				frames = Paths.getSparrowAtlas("third/Striker" + suffix, "weekink");
 				animation.addByPrefix("walk", "Str walk instance 1", 24, true);
 				animation.addByPrefix("idle", "strrr instance 1", 24, true);
 				animation.addByPrefix("hit", "Sticker  instance 1", 24, false);
@@ -73,7 +73,7 @@ class BendyBoy extends FlxSprite
 			setZoom(1.1 * 1.7);
 		}
 
-		antialiasing = FlxG.save.data.highquality;
+		antialiasing = ClientPrefs.globalAntialiasing;
 
 		playAnim("walk");
 	}
@@ -83,7 +83,7 @@ class BendyBoy extends FlxSprite
 	public function die()
 	{
 		trace(type + " died");
-		FlxG.sound.play(Paths.sound('butcherSounds/Ded', 'bendy'), 1);
+		FlxG.sound.play(Paths.sound('butcherSounds/Ded', 'weekink'), 1);
 		hp = 0;
 		playAnim("ded", true);
 		attacking = false;
@@ -93,7 +93,7 @@ class BendyBoy extends FlxSprite
 	{
 		var randomsound:String = 'butcherSounds/Hurt0' + FlxG.random.int(1, 2);
 		trace(randomsound);
-		FlxG.sound.play(Paths.sound(randomsound, 'bendy'), 1);
+		FlxG.sound.play(Paths.sound(randomsound, 'weekink'), 1);
 		playAnim("hit", true);
 	}
 
@@ -101,7 +101,7 @@ class BendyBoy extends FlxSprite
 	{
 		var randomsound:String = 'butcherSounds/Attack0' + FlxG.random.int(1, 4);
 		trace(randomsound);
-		FlxG.sound.play(Paths.sound(randomsound, 'bendy'), 1);
+		FlxG.sound.play(Paths.sound(randomsound, 'weekink'), 1);
 		playAnim("attack", true);
 	}
 
