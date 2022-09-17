@@ -1142,7 +1142,7 @@ class PlayState extends MusicBeatState
 
 		// IM GONNA ATTEMPT THIS SHIT !!!! - volv
 
-		switch (curStage)
+		/*switch (curStage)
 		{
 			case 'field' | 'devilHall':
 				@:privateAccess {
@@ -1164,6 +1164,19 @@ class PlayState extends MusicBeatState
 					healthBarBG = AttachedSprite('healthBar');
 					// healthBarBG.setGraphicSize(600);
 				}
+		}*/
+
+		if (curStage == 'field' || curStage == 'devilHall') {
+			healthBarBG = AttachedSprite('healthBar');
+		}
+		else if (curStage == 'factory' || curStage == 'freaky-machine'){
+			healthBarBG = AttachedSprite('healthBar');
+		}
+		else if (curStage == 'hall'){
+			healthBarBG = AttachedSprite('healthbar/sanshealthbar3', null, 'preload');
+		}
+		else {
+			healthBarBG = AttachedSprite('healthBar');
 		}
 
 		healthBarBG.y = FlxG.height * 0.89;
