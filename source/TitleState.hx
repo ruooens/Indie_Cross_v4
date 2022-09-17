@@ -33,7 +33,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
-import openfl.Assets;
+import openfl.utils.Assets;
 import flash.display.BlendMode;
 
 using StringTools;
@@ -209,7 +209,7 @@ class TitleState extends MusicBeatState
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
-		FlxG.camera.flash(FlxColor.WHITE, 4);
+		FlxG.camera.flash(FlxColor.BLACK, 2);
 
 		Conductor.changeBPM(117);
 		persistentUpdate = true;
