@@ -296,6 +296,54 @@ class StoryMenuState extends MusicBeatState
 		panel.screenCenter();
 		add(panel);
 
+		// add mechanics difficulty selectors here
+
+		week1 = new FlxSprite(-215, -125).loadGraphic(Paths.image('story/weeks/Week1'));
+		week1.antialiasing = ClientPrefs.globalAntialiasing;
+		week1.scale.set(0.75, 0.75);
+		week1.visible = false;
+		add(week1);
+
+		week1s = new FlxSprite(-215, -125).loadGraphic(Paths.image('story/weeks/Week1_selected'));
+		week1s.antialiasing = ClientPrefs.globalAntialiasing;
+		week1s.scale.set(0.75, 0.75);
+		week1s.visible = false;
+		add(week1s);
+
+		week2 = new FlxSprite(-215, -125).loadGraphic(Paths.image('story/weeks/Week2'));
+		week2.antialiasing = ClientPrefs.globalAntialiasing;
+		week2.scale.set(0.75, 0.75);
+		week2.visible = false;
+		add(week2);
+
+		week2s = new FlxSprite(-215, -125).loadGraphic(Paths.image('story/weeks/Week2_selected'));
+		week2s.antialiasing = ClientPrefs.globalAntialiasing;
+		week2s.scale.set(0.75, 0.75);
+		week2s.visible = false;
+		add(week2s);
+
+		week3 = new FlxSprite(-215, -125).loadGraphic(Paths.image('story/weeks/Week3'));
+		week3.antialiasing = ClientPrefs.globalAntialiasing;
+		week3.scale.set(0.75, 0.75);
+		week3.visible = false;
+		add(week3);
+
+		week3s = new FlxSprite(-215, -125).loadGraphic(Paths.image('story/weeks/Week3_selected'));
+		week3s.antialiasing = ClientPrefs.globalAntialiasing;
+		week3s.scale.set(0.75, 0.75);
+		week3s.visible = false;
+		add(week3s);
+
+		storytext = new FlxSprite(-480, -200).loadGraphic(Paths.image('story/Storymode'));
+		storytext.antialiasing = ClientPrefs.globalAntialiasing;
+		storytext.scale.set(0.5, 0.5);
+		add(storytext);
+
+		scorepanel = new FlxSprite(0, -350).loadGraphic(Paths.image('story/Score_bottom panel'));
+		scorepanel.antialiasing = ClientPrefs.globalAntialiasing;
+		scorepanel.screenCenter(X);
+		add(scorepanel);
+
 		changeWeek();
 
 		super.create();
