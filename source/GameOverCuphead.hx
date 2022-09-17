@@ -11,7 +11,9 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
+#if cpp
 import lime.media.openal.AL;
+#end
 import openfl.system.System;
 
 /**
@@ -233,10 +235,13 @@ class GameOverCuphead extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
+		// this only works on cpp platforms, let that sink in
+		#if cpp
 		@:privateAccess
 		{
 			AL.sourcef(deadMusic._channel.__source.__backend.handle, AL.PITCH, songSpeed);
 		}
+		#end
 
 		if (!isEnding)
 		{
