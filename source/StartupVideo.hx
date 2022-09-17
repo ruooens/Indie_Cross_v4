@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import openfl.utils.Assets;
 import flixel.FlxState;
+import flixel.FlxSprite;
 
 #if VIDEOS_ALLOWED
 import FlxVideo;
@@ -11,6 +12,7 @@ import FlxVideo;
 class StartupVideo extends FlxState {
     public function new() {
         startVideo();
+        super();
     }
 
     function startVideo() {
