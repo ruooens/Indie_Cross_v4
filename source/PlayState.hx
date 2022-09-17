@@ -454,7 +454,8 @@ class PlayState extends MusicBeatState
 			
 				boyfriend: [770, 100],
 				girlfriend: [400, 130],
-				opponent: [100, 100]
+				opponent: [100, 100],
+				hide_girlfriend: false
 			};
 		}
 
@@ -744,9 +745,9 @@ class PlayState extends MusicBeatState
 				var bg:FlxSprite = new FlxSprite();
 
 				if (SONG.song.toLowerCase() == 'knockout')
-					bg.loadGraphic(Paths.image('angry/CH-RN-00', 'cup',false));
+					bg.loadGraphic(Paths.image('angry/CH-RN-00', 'weekcup',false));
 				else
-					bg.loadGraphic(Paths.image('BG-00', 'cup',false));
+					bg.loadGraphic(Paths.image('BG-00', 'weekcup',false));
 
 				bg.setGraphicSize(Std.int(bg.width * 0.7 * 4));
 				bg.updateHitbox();
@@ -759,9 +760,9 @@ class PlayState extends MusicBeatState
 				var trees:FlxSprite = new FlxSprite();
 
 				if (SONG.song.toLowerCase() == 'knockout')
-					trees.loadGraphic(Paths.image('angry/CH-RN-01', 'cup',false));
+					trees.loadGraphic(Paths.image('angry/CH-RN-01', 'weekcup',false));
 				else
-					trees.loadGraphic(Paths.image('BG-01', 'cup',false));
+					trees.loadGraphic(Paths.image('BG-01', 'weekcup',false));
 
 				trees.setGraphicSize(Std.int(trees.width * 0.7 * 4));
 				trees.updateHitbox();
@@ -775,9 +776,9 @@ class PlayState extends MusicBeatState
 				var fg:FlxSprite = new FlxSprite();
 
 				if (SONG.song.toLowerCase() == 'knockout')
-					fg.loadGraphic(Paths.image('angry/CH-RN-02', 'cup',false));
+					fg.loadGraphic(Paths.image('angry/CH-RN-02', 'weekcup',false));
 				else
-					fg.loadGraphic(Paths.image('Foreground', 'cup',false));
+					fg.loadGraphic(Paths.image('Foreground', 'weekcup',false));
 
 				fg.setGraphicSize(Std.int(fg.width * 0.9 * 4));
 				fg.updateHitbox();
@@ -905,11 +906,13 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
-		gf = new Character(0, 0, gfVersion);
-		startCharacterPos(gf);
-		gf.scrollFactor.set(0.95, 0.95);
-		gfGroup.add(gf);
-		startCharacterLua(gf.curCharacter);
+		if (!stageData.hide_girlfriend){
+			gf = new Character(0, 0, gfVersion);
+			startCharacterPos(gf);
+			gf.scrollFactor.set(0.95, 0.95);
+			gfGroup.add(gf);
+			startCharacterLua(gf.curCharacter);
+		}
 
 		dad = new Character(0, 0, SONG.player2);
 		startCharacterPos(dad, true);
