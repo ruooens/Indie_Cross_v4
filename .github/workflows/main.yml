@@ -44,7 +44,7 @@ jobs:
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
       - name: Compile
-        run: haxelib lime test html5
+        run: lime test html5
       - name: Publish Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
