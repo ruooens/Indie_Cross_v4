@@ -303,12 +303,23 @@ class PlayState extends MusicBeatState
 
 	// bendy
 	var iskinky = false; // :smirk:
+	var overrideNMZoom:Bool = false;
 
 	var strikeraddtime=0.0;
 	var piperaddtime=0.0;
 
 	public var currentPiper:BendyBoy;
 	public var currentStriker:BendyBoy;
+
+	// BENDY (again)
+	var inkObj:FlxSprite;
+	var inkProg:Int = 0;
+	var inkStormRain:FlxSprite;
+	var blackOverlay:FlxSprite;
+	var stickmanGuy:FlxSprite;
+	var blackStickmanThereInBG:FlxSprite;
+	var bendyboysfg:FlxSprite;
+	var bendyIntroOverlay:FlxSprite;	
 
 	override public function create()
 	{
