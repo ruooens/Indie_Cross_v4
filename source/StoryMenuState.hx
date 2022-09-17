@@ -78,10 +78,22 @@ class DiffButton extends FlxSprite
 
 class StoryMenuState extends MusicBeatState
 {
-	// Wether you have to beat the previous week for playing this one
-	// Not recommended, as people usually download your mod for, you know,
-	// playing just the modded week then delete it.
-	// defaults to True
+	//sprites :)
+	//atleast the week ones
+	var bg:FlxSprite;
+	var sans:FlxSprite;
+	var cuphead:FlxSprite;
+	var bendy:FlxSprite;
+	var panel:FlxSprite;
+	var week1:FlxSprite;
+	var week1s:FlxSprite;
+	var week2:FlxSprite;
+	var week2s:FlxSprite;
+	var week3:FlxSprite;
+	var week3s:FlxSprite;
+	var storytext:FlxSprite;
+	var scorepanel:FlxSprite;
+	
 	public static var weekCompleted:Map<String, Bool> = new Map<String, Bool>();
 
 	var scoreText:FlxText;
@@ -234,6 +246,55 @@ class StoryMenuState extends MusicBeatState
 		// add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
+
+		//so no vision :)
+		//difficultySelectors.visible = false;
+		grpWeekText.visible = false;
+		blackBarThingie.visible = false;
+	    grpLocks.visible = false;
+		bgYellow.visible = false;
+		bgSprite.visible = false;
+		grpWeekCharacters.visible = false;
+		tracksSprite.visible = false;
+		txtTracklist.visible = false;
+		txtWeekTitle.visible = false;
+
+		bg = new FlxSprite(-250, -200).loadGraphic(Paths.image('story/BG'));
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		bg.scale.set(0.6, 0.65);
+		bg.visible = false;
+		add(bg);
+
+		cuphead = new FlxSprite(675, 50); //how did this take me 2 hours to figure out
+		cuphead.frames = Paths.getSparrowAtlas('story/Cuphead_Gaming');
+		cuphead.animation.addByPrefix('cup', 'Cuphead Gaming instance 1', 24); 
+		cuphead.animation.play('cup');
+		cuphead.antialiasing = ClientPrefs.globalAntialiasing;
+		cuphead.scale.set(0.75, 0.75);
+		cuphead.visible = false;
+		add(cuphead);
+
+		sans = new FlxSprite(0, -50); //how did this take me 2 hours to figure out
+		sans.frames = Paths.getSparrowAtlas('story/SansStorymodeMenu');
+		sans.animation.addByPrefix('sansanim', 'Saness instance 1', 24); 
+		sans.animation.play('sansanim');
+		sans.antialiasing = ClientPrefs.globalAntialiasing;
+		sans.visible = false;
+		add(sans);
+
+		bendy = new FlxSprite(-250, -225); //how did this take me 2 hours to figure out
+		bendy.frames = Paths.getSparrowAtlas('story/Bendy_Gaming');
+		bendy.animation.addByPrefix('bendycreep', 'Creepy shit instance 1', 24); 
+		bendy.animation.play('bendycreep');
+		bendy.antialiasing = ClientPrefs.globalAntialiasing;
+		bendy.scale.set(0.6, 0.65);
+		bendy.visible = false;
+		add(bendy);
+
+		panel = new FlxSprite(0, -350).loadGraphic(Paths.image('story/Left-Panel_above BGs'));
+		panel.antialiasing = ClientPrefs.globalAntialiasing;
+		panel.screenCenter();
+		add(panel);
 
 		changeWeek();
 
