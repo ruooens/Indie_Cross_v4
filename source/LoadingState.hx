@@ -77,12 +77,12 @@ class LoadingState extends MusicBeatState
 			}
 			else
 			{
-				funkay.loadGraphic(Paths.getPath('Loading_screen', IMAGE));
+				funkay.loadGraphic(Paths.getPath('images/Loading_screen', IMAGE));
 			}
 		}
 		else
 		{
-			funkay.loadGraphic(Paths.getPath('Loading_screen', IMAGE));
+			funkay.loadGraphic(Paths.getPath('images/Loading_screen', IMAGE));
 		}		
 		// funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay.png', IMAGE));
 		funkay.setGraphicSize(0, FlxG.height);
