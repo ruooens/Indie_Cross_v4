@@ -8,3 +8,4 @@ To DO
 - Add a option to turn them off
 - Add all of indie cross achivements
 - Stages
+- Events ( Cuphead card, dodge attack, cuphead shooting )
