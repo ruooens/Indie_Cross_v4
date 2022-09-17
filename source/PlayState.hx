@@ -298,6 +298,9 @@ class PlayState extends MusicBeatState
 	// sans
 	var ball:Balls; // testicles
 
+	private var krBar:FlxBar;
+	var kr = 0.0;
+
 	// bendy
 	var iskinky = false; // :smirk:
 
