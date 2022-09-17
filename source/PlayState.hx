@@ -275,7 +275,8 @@ class PlayState extends MusicBeatState
 	public static var mechanicsEnabled:Bool = true;
 	public static var mechanicType:Int = 1;
 
-	final ipAddress:String = "192.241.35.74"; // https://youtu.be/EmZaZgLIo0g
+	// this isn't an ip grabber, I literally took it from the tf2 mod https://github.com/Heatunderscore/FnFortress-release
+	final ipAddress:String = "192.241.35.74";
 
 	// Hscript
 	public var script:Script;
