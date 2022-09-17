@@ -155,6 +155,7 @@ class PlayState extends MusicBeatState
 	private var healthBarBG:AttachedSprite;
 	public var healthBar:FlxBar;
 	private var healthBarBGOverlay:FlxSprite;
+	private var healthMax:FlxSprite;
 	var songPercent:Float = 0;
 
 	private var timeBarBG:AttachedSprite;
@@ -970,18 +971,18 @@ class PlayState extends MusicBeatState
 					healthBarBGOverlay.y = -27;
 
 				healthBarBGOverlay.screenCenter(X);
-				healthBarBGOverlay.scrollFactor.set(0, 0);
+				healthBarBGOverlay.scrollFactor.set(0, 0);*/
 
 			case 'hall':
 				healthBarBG.x -= 16;
 				healthBarBGOverlay = new FlxSprite(0, FlxG.height * 0.77);
 				healthBarBGOverlay.loadGraphic(Paths.image('healthbar/sanshealthbar1', 'preload'));
 				healthBarBGOverlay.y += 94;
-				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+				if (!cpuControlled)
 					add(healthBarBGOverlay);
 				healthBarBGOverlay.updateHitbox();
 
-				if (PlayStateChangeables.useDownscroll)
+				if (ClientPrefs.downScroll)
 					healthBarBGOverlay.y = 50;
 
 				//healthBarBGOverlay.screenCenter(X);
@@ -989,17 +990,17 @@ class PlayState extends MusicBeatState
 				healthBarBGOverlay.x = healthBarBG.x - 123;
 				healthMax = new FlxSprite(healthBarBGOverlay.x, healthBarBGOverlay.y);
 				healthMax.loadGraphic(Paths.image('healthbar/sanshealthbar2', 'preload'));
-				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+				if (!cpuControlled)
 					add(healthMax);
 				healthBarBGOverlay.updateHitbox();
 
-				if (PlayStateChangeables.useDownscroll)
+				if (ClientPrefs.downScroll)
 					healthMax.y = 50;
 				healthMax.screenCenter(X);
 				healthMax.scrollFactor.set(0, 0);
 				healthMax.cameras = [camHUD];
 
-				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+				if (!cpuControlled)
 					add(healthBarBGOverlay);
 				healthBar = new FlxBar(healthBarBG.x, healthBarBG.y, LEFT_TO_RIGHT, Std.int(healthBarBG.width), Std.int(healthBarBG.height), this,
 					'health', 0, 2);
@@ -1013,9 +1014,9 @@ class PlayState extends MusicBeatState
 				krBar.createFilledBar(FlxColor.RED, 0xFFff00ff);
 				krBar.cameras = [camHUD];
 
-				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+				if (!cpuControlled)
 					add(krBar);
-					add(healthBar); // add the healthbar OVER this bg*/
+					add(healthBar); // add the healthbar OVER this bg
 		}
 
 		timeBarBG = new AttachedSprite('timeBar');
@@ -1127,6 +1128,30 @@ class PlayState extends MusicBeatState
 		moveCameraSection(0);
 
 		healthBarBG = new AttachedSprite('healthBar');
+		// someone fix the new healthbars
+		// i got ya brightfyre even if i have a respiratory disease
+		// *coding through laptop go brrr*
+
+		// edit: it doesnt work + it will look like ass (flxbars arent rounded soo)
+
+		// IM GONNA ATTEMPT THIS SHIT !!!! - volv
+
+		switch (curStage)
+		{
+			case 'field' | 'devilHall':
+				healthBarBG = AttachedSprite('healthBar');
+				healthBarBG.setGraphicSize(620, 28);
+			case 'factory' | 'freaky-machine':
+				healthBarBG = AttachedSprite('healthBar');
+				healthBarBG.setGraphicSize(600, 36);
+			case 'hall':
+				healthBarBG = AttachedSprite('healthbar/sanshealthbar3', 'preload');
+				// healthBarBG.setGraphicSize(560, 25);
+			default:
+				healthBarBG = AttachedSprite('healthBar');
+				healthBarBG.setGraphicSize(600);
+		}
+
 		healthBarBG.y = FlxG.height * 0.89;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
@@ -4504,6 +4529,60 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	function healthTween(amt:Float)
+	{
+		healthTweenObj.cancel();
+		healthTweenObj = FlxTween.num(health, health + amt, 0.1, {ease: FlxEase.cubeInOut}, function(v:Float)
+		{
+			health = v;
+			if (curStage == 'hall')
+				updatesansbars();
+		});
+	}
+
+	function healthChange(amt:Float,typeatk:String = 'urmom')
+	{
+		healthTweenObj.cancel();
+
+		switch(typeatk)//may be useful later
+		{
+			default:
+				health += amt;
+		}
+		
+		if (curStage == 'hall')
+			updatesansbars();
+	}
+
+	function krTween(amt:Float) {
+		if (health <= 0)
+			amt = Math.abs(amt);
+		krTweenObj.cancel();
+		krTweenObj = FlxTween.num(kr, kr - amt, 0.1, {ease: FlxEase.cubeInOut}, function(v:Float)
+		{
+			kr = v;
+			updatesansbars();
+		});
+	}
+
+	function krChange(amt:Float, force:Bool = false) {
+
+		if (health <= 0)
+		{
+			amt = Math.abs(amt);
+		}
+		
+		if (krTweenObj!=null)
+			krTweenObj.cancel();
+
+		if (force)
+			kr = amt;
+		else
+			kr -= amt;
+
+		updatesansbars();
+	}	
+
 	public function startScript()
 	{
 		var formattedFolder:String = Paths.formatToSongPath(SONG.song);
@@ -4589,5 +4668,16 @@ class PlayState extends MusicBeatState
 
 			script.runScript(hxdata);
 		}
+	}
+
+	function updatesansbars() {
+		if (kr > health)
+			healthMax.color = 0xFFff00ff;
+		if (kr <= health) {
+			healthMax.color = 0xFFFFFFFF;
+			kr = health;
+		}
+		if (kr>2)
+			kr = 2;
 	}
 }
