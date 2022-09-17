@@ -1,12 +1,13 @@
 package;
 
 import flixel.FlxG;
+import openfl.utils.Assets;
 
 #if VIDEOS_ALLOWED
 import FlxVideo;
 #end
 
-class StartupVideo {
+class StartupVideo extends FlxState {
     public function new() {
         startVideo();
     }
