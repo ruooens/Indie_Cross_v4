@@ -46,6 +46,8 @@ class FreeplayState extends MusicBeatState
 
 	private var iconArray:Array<HealthIcon> = [];
 
+	public static var curMechDifficulty:Int = 1;
+
 	final scoreMultiplier:Float = 1.25 - (0.25 * curMechDifficulty); // should be 0.75 if the mechanics are off !
 
 	var bg:FlxSprite;
