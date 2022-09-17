@@ -22,7 +22,10 @@ class Achievements {
 		["Ultimate Knockout",			"Defeat Nightmare Cuphead",							'nightmare_cup',		false],
 		["Bad Time",					"Defeat Nightmare Sans.",							'nightmare_sans',		false],
 		["Inking Mistake",				"Defeat Nightmare Ink Demon.",						'nightmare_bendy',		false],
-		["The End...",					"Beat every week.",									'theend',				false]
+		["The End...",					"Beat every week.",									'theend',				false],
+		["Just the Two of Us",			"Finish a Song pressing only two keys.",			'two_keys',				false],
+		["Toaster Gamer",				"Have you tried to run the game on a toaster?",		'toastie',				false],
+		["Debugger",					"Beat the \"Test\" Stage from the Chart Editor.",	'debugger',				false]
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 
