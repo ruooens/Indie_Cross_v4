@@ -3114,7 +3114,7 @@ class PlayState extends MusicBeatState
 			return;
 		} else {
 			var achieve:String = checkForAchievement(['cuphead_nomiss', 'sans_nomiss', 'bendy_nomiss', 'captured',
-				'gose', 'knockout', 'saness', 'nododge', 'nightmare_cup', 'nightmare_sans', 'nightmare_bendy'
+				'gose', 'knockout', 'saness', 'nododge', 'nightmare_cup', 'nightmare_sans', 'nightmare_bendy',
 				'theend', 'two_keys', 'toastie', 'debugger']);
 
 			if(achieve != null) {
