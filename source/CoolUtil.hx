@@ -64,11 +64,6 @@ class CoolUtil
 		return b == 0 ? FlxMath.absInt(a) : GCD(b, a % b);
 	}
 
-	public static function difficultyFromInt(difficulty:Int):String
-	{
-		return defaultDifficulties[difficulty];
-	}
-
 	public static var mechDifficultyArray:Array<String> = ['Hell', "Standard", "Off"];
 
 	public static function mechDifficultyFromInt(mechDifficulty:Int):String
