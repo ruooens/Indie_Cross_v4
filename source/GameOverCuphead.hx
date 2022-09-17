@@ -308,8 +308,8 @@ class GameOverCuphead extends MusicBeatSubstate
 				switch (type)
 				{
 					case 0:
-						FNFState.disableNextTransIn = true;
-						FNFState.disableNextTransOut = true;
+						// FNFState.disableNextTransIn = true;
+						// FNFState.disableNextTransOut = true;
 						FlxG.sound.play(Paths.sound('select', 'cup'));
 						deadMusic.fadeOut(0.3);
 						FlxG.camera.fade(FlxColor.BLACK, 0.3, false, function()
