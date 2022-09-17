@@ -41,11 +41,13 @@ class VisualsUISubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Lane Underlay Opacity', //Name
-			'Opacity of underlay of notes', //Description
-			'underlayAlpha', //Save data variable name
-			'int', //Variable type
-			0); //Default value
+		var option:Option = new Option('Lane Underlay',
+			'Changes transparency of lane underlay behind the notes.',
+			'underlayAlpha',
+			'int',
+			10);
+		option.displayFormat = '%v%';
+		option.scrollSpeed = 50;
 		option.minValue = 0;
 		option.maxValue = 100;
 		addOption(option);
