@@ -1,7 +1,7 @@
 package;
 
 import flixel.FlxSprite;
-import flixel.FlxPoint;
+import flixel.math.FlxPoint;
 
 using StringTools;
 

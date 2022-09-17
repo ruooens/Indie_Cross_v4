@@ -1147,22 +1147,22 @@ class PlayState extends MusicBeatState
 			case 'field' | 'devilHall':
 				@:privateAccess {
 					healthBarBG = AttachedSprite('healthBar');
-					healthBarBG.setGraphicSize(620, 28);
+					// healthBarBG.setGraphicSize(620, 28);
 				}
 			case 'factory' | 'freaky-machine':
 				@:privateAccess {
 					healthBarBG = AttachedSprite('healthBar');
-					healthBarBG.setGraphicSize(600, 36);
+					// healthBarBG.setGraphicSize(600, 36);
 				}
 			case 'hall':
 				@:privateAccess {
 					healthBarBG = AttachedSprite('healthbar/sanshealthbar3', 'preload');
-					healthBarBG.setGraphicSize(560, 25);
+					// healthBarBG.setGraphicSize(560, 25);
 				}
 			default:
 				@:privateAccess {
 					healthBarBG = AttachedSprite('healthBar');
-					healthBarBG.setGraphicSize(600);
+					// healthBarBG.setGraphicSize(600);
 				}
 		}
 
