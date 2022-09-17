@@ -46,18 +46,60 @@ class LoadingState extends MusicBeatState
 	{
 		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
 		add(bg);
-		funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay.png', IMAGE));
+		if (PlayState.SONG != null)
+		{
+			if (PlayState.SONG.song.toLowerCase() == "devils-gambit" || PlayState.SONG.song.toLowerCase() == "bad-time" || PlayState.SONG.song.toLowerCase() == "despair")
+			{
+				if (!FlxG.save.data.secretChars[5])
+				{
+					if (!FlxG.save.data.secretChars[6])
+					{
+						if (!FlxG.save.data.secretChars[7])
+						{
+							funkay.loadGraphic(Paths.image('nm/3', 'preload'));
+						}
+						else
+						{
+							funkay.loadGraphic(Paths.image('nm/2', 'preload'));
+						}
+					}
+					else
+					{
+						funkay.loadGraphic(Paths.image('nm/1', 'preload'));
+					}
+				}
+				else
+				{
+					funkay.loadGraphic(Paths.image('nm/0', 'preload'));
+				}
+			}
+			else
+			{
+				funkay.loadGraphic(Paths.image('Loading_screen', 'preload'));
+			}
+		}
+		else
+		{
+			funkay.loadGraphic(Paths.image('Loading_screen', 'preload'));
+		}		
+		/*funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay.png', IMAGE));
 		funkay.setGraphicSize(0, FlxG.height);
 		funkay.updateHitbox();
 		funkay.antialiasing = ClientPrefs.globalAntialiasing;
 		add(funkay);
 		funkay.scrollFactor.set();
-		funkay.screenCenter();
+		funkay.screenCenter();*/
 
 		loadBar = new FlxSprite(0, FlxG.height - 20).makeGraphic(FlxG.width, 10, 0xffff16d2);
 		loadBar.screenCenter(X);
 		loadBar.antialiasing = ClientPrefs.globalAntialiasing;
 		add(loadBar);
+
+		var loadTxt:FlxText = new FlxText(0, 0, 0, "Loading...", 30);
+		loadTxt.setFormat('vcr.ttf', 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		loadTxt.x = 5;
+		loadTxt.y = FlxG.height - loadTxt.height - 5;
+		add(loadTxt);
 		
 		initSongsManifest().onComplete
 		(
