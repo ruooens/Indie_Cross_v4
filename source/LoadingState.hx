@@ -58,31 +58,31 @@ class LoadingState extends MusicBeatState
 					{
 						if (!FlxG.save.data.secretChars[7])
 						{
-							funkay.loadGraphic(Paths.image('nm/3', 'preload'));
+							funkay.loadGraphic(Paths.getPath('nm/3', IMAGE));
 						}
 						else
 						{
-							funkay.loadGraphic(Paths.image('nm/2', 'preload'));
+							funkay.loadGraphic(Paths.getPath('nm/2', IMAGE));
 						}
 					}
 					else
 					{
-						funkay.loadGraphic(Paths.image('nm/1', 'preload'));
+						funkay.loadGraphic(Paths.getPath('nm/1', IMAGE));
 					}
 				}
 				else
 				{
-					funkay.loadGraphic(Paths.image('nm/0', 'preload'));
+					funkay.loadGraphic(Paths.getPath('nm/0', IMAGE));
 				}
 			}
 			else
 			{
-				funkay.loadGraphic(Paths.image('Loading_screen', 'preload'));
+				funkay.loadGraphic(Paths.getPath('Loading_screen', IMAGE));
 			}
 		}
 		else
 		{
-			funkay.loadGraphic(Paths.image('Loading_screen', 'preload'));
+			funkay.loadGraphic(Paths.getPath('Loading_screen', IMAGE));
 		}		
 		// funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay.png', IMAGE));
 		funkay.setGraphicSize(0, FlxG.height);
