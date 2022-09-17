@@ -1875,10 +1875,6 @@ class PlayState extends MusicBeatState
 
 	private function generateStaticArrows(player:Int):Void
 	{
-		var underlay = underlayPlayer;
-		if (player == 0) {
-			underlay = underlayOpponent;
-		}
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
@@ -2518,13 +2514,6 @@ class PlayState extends MusicBeatState
 			} else if(boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
 				boyfriend.dance();
 			}
-		}
-
-		if (playerStrums.length > 0) {
-			underlayPlayer.x = playerStrums.members[0].x;
-		}
-		if (opponentStrums.length > 0) {
-			underlayOpponent.x = opponentStrums.members[0].x;
 		}
 
 		#if debug
