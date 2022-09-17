@@ -20,8 +20,6 @@ class SansDialogueBox extends FlxSpriteGroup
 	var curSound:String = '';
 	var soundDelay:String = '';
 
-
-
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
 

@@ -16,12 +16,7 @@ class JumpscareState extends MusicBeatState
     override function create()
     {
         super.create();
-        
-        /*screen = new FlxSprite(0, 0).loadGraphic(Paths.image('bonusSongs/BlackScreen', 'shared'));
-        screen.scrollFactor.set(0, 0);
-        add(screen);*/
 
-       
         if (PlayState.SONG.song.toLowerCase() == 'despair')
         {
             FlxG.sound.playMusic(Paths.music('fuck you', 'bendy'));
@@ -43,7 +38,6 @@ class JumpscareState extends MusicBeatState
 
         FNFState.disableNextTransOut = true;
     }
-
 
 	override function update(elapsed:Float)
 	{
