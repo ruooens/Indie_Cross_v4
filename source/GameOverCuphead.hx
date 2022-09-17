@@ -283,7 +283,6 @@ class GameOverCuphead extends MusicBeatSubstate
 		}
 
 		// this was the code used to get the options offsets, might be cool to leave it as an easter egg
-		#if debug // no brightfyre or whoever wrote that message above
 		var spr = menuArray[curSelected];
 		if (FlxG.keys.pressed.FIVE)
 		{
@@ -294,7 +293,6 @@ class GameOverCuphead extends MusicBeatSubstate
 		{
 			trace(spr.x + ',' + spr.y);
 		}
-		#end
 	}
 
 	var isEnding:Bool = false;
