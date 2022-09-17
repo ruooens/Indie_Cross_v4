@@ -305,6 +305,7 @@ class PlayState extends MusicBeatState
 
 	private var krBar:FlxBar;
 	var kr = 0.0;
+	var krTweenObj:FlxTween;
 
 	// bendy
 	var iskinky = false; // :smirk:
@@ -399,6 +400,7 @@ class PlayState extends MusicBeatState
 		startScript();
 
 		healthTweenObj = FlxTween.tween(this, {}, 0);
+		krTweenObj = FlxTween.tween(this, {}, 0);
 
 		#if desktop
 		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
@@ -1143,17 +1145,25 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'field' | 'devilHall':
-				healthBarBG = AttachedSprite('healthBar');
-				healthBarBG.setGraphicSize(620, 28);
+				@:privateAccess {
+					healthBarBG = AttachedSprite('healthBar');
+					healthBarBG.setGraphicSize(620, 28);
+				}
 			case 'factory' | 'freaky-machine':
-				healthBarBG = AttachedSprite('healthBar');
-				healthBarBG.setGraphicSize(600, 36);
+				@:privateAccess {
+					healthBarBG = AttachedSprite('healthBar');
+					healthBarBG.setGraphicSize(600, 36);
+				}
 			case 'hall':
-				healthBarBG = AttachedSprite('healthbar/sanshealthbar3', 'preload');
-				// healthBarBG.setGraphicSize(560, 25);
+				@:privateAccess {
+					healthBarBG = AttachedSprite('healthbar/sanshealthbar3', 'preload');
+					healthBarBG.setGraphicSize(560, 25);
+				}
 			default:
-				healthBarBG = AttachedSprite('healthBar');
-				healthBarBG.setGraphicSize(600);
+				@:privateAccess {
+					healthBarBG = AttachedSprite('healthBar');
+					healthBarBG.setGraphicSize(600);
+				}
 		}
 
 		healthBarBG.y = FlxG.height * 0.89;
