@@ -21,6 +21,61 @@ import WeekData;
 
 using StringTools;
 
+class DiffButton extends FlxSprite
+{
+	public var animOffsets:Map<String, Array<Dynamic>>;
+	public var daZoom:Float = 1;
+	public var curAnimName:String = 'idle';
+
+	public function new(x:Int, y:Int)
+	{
+		super(x, y);
+		animOffsets = new Map<String, Array<Dynamic>>();
+		
+		frames = Paths.getSparrowAtlas('story mode/Difficulties', 'preload');
+		animation.addByPrefix(CoolUtil.mechDifficultyFromInt(2), 'Mechs Dis instance 1', 24, true);
+		animation.addByPrefix(CoolUtil.mechDifficultyFromInt(1), 'Mechs Hard instance 1', 24, true);
+		animation.addByPrefix(CoolUtil.mechDifficultyFromInt(0), 'Mechs Hell instance 1', 24, true);
+
+		addOffset(CoolUtil.mechDifficultyFromInt(2), 0, 0);
+		addOffset(CoolUtil.mechDifficultyFromInt(1), 0, 0);
+		addOffset(CoolUtil.mechDifficultyFromInt(0), 10, 30);
+
+		playAnim(CoolUtil.mechDifficultyFromInt(StoryMenuState.curMechDifficulty), true);
+
+        offset.set(0, 0);
+		antialiasing = ClientPrefs.globalAntialiasing;
+        scrollFactor.set();
+	}
+
+	public function setZoom(?toChange:Float = 1):Void
+	{
+		daZoom = toChange;
+		scale.set(toChange, toChange);
+	}
+
+	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
+	{
+		animation.play(AnimName, Force, Reversed, Frame);
+		curAnimName = AnimName;
+
+		var daOffset = animOffsets.get(AnimName);
+		if (animOffsets.exists(AnimName))
+		{
+			offset.set(daOffset[0] * daZoom, daOffset[1] * daZoom);
+		}
+		else
+		{
+			offset.set(0, 0);
+		}
+	}
+
+	public function addOffset(name:String, x:Float = 0, y:Float = 0)
+	{
+		animOffsets[name] = [x, y];
+	}
+}
+
 class StoryMenuState extends MusicBeatState
 {
 	// Wether you have to beat the previous week for playing this one
@@ -33,6 +88,7 @@ class StoryMenuState extends MusicBeatState
 
 	private static var lastDifficultyName:String = '';
 	var curDifficulty:Int = 1;
+	public static var curMechDifficulty:Int = 1;
 
 	var txtWeekTitle:FlxText;
 	var bgSprite:FlxSprite;
