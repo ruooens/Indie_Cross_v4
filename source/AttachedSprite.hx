@@ -17,16 +17,6 @@ class AttachedSprite extends FlxSprite
 	public var copyVisible:Bool = false;
 
 	/**
-	 * The width of the actual graphic or image being displayed (not necessarily the game object/bounding box).
-	 */
-	public var frameWidth(default, null):Int = 0;
-
-	/**
-	 * The height of the actual graphic or image being displayed (not necessarily the game object/bounding box).
-	 */
-	public var frameHeight(default, null):Int = 0;
-
-	/**
 	 * Controls the position of the sprite's hitbox. Likely needs to be adjusted after
 	 * changing a sprite's `width`, `height` or `scale`.
 	 */

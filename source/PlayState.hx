@@ -316,6 +316,9 @@ class PlayState extends MusicBeatState
 	public var currentPiper:BendyBoy;
 	public var currentStriker:BendyBoy;
 
+	var piperTween:FlxTween;
+	var strikerTween:FlxTween;
+
 	// BENDY (again)
 	var inkObj:FlxSprite;
 	var inkProg:Int = 0;
