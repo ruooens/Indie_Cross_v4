@@ -119,6 +119,10 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 
+	var diffmechSpr:DiffButton;
+	var diffmechOrigX:Int = -2;
+	var diffmechTween:FlxTween;
+
 	override function create()
 	{
 		#if MODS_ALLOWED
@@ -219,6 +223,7 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty = new FlxSprite(0, leftArrow.y);
 		sprDifficulty.antialiasing = ClientPrefs.globalAntialiasing;
 		changeDifficulty();
+		changeMechDifficulty();
 
 		difficultySelectors.add(sprDifficulty);
 
@@ -296,7 +301,10 @@ class StoryMenuState extends MusicBeatState
 		panel.screenCenter();
 		add(panel);
 
-		// add mechanics difficulty selectors here
+		diffmechSpr = new DiffButton(diffmechOrigX, 200);
+		add(diffmechSpr);
+
+		diffmechTween = FlxTween.tween(this, {}, 0);
 
 		week1 = new FlxSprite(-215, -125).loadGraphic(Paths.image('story/weeks/Week1'));
 		week1.antialiasing = ClientPrefs.globalAntialiasing;
@@ -355,6 +363,33 @@ class StoryMenuState extends MusicBeatState
 		super.closeSubState();
 	}
 
+	function changeMechDifficulty(change:Int = 0):Void
+	{
+		curMechDifficulty += change;
+
+		if (curMechDifficulty < 0)
+			curMechDifficulty = 2;
+		if (curMechDifficulty > 2)
+			curMechDifficulty = 0;
+
+		switch (curMechDifficulty)
+		{
+			case 0:
+				diffmechSpr.playAnim(CoolUtil.mechDifficultyFromInt(0));
+			case 1:
+				diffmechSpr.playAnim(CoolUtil.mechDifficultyFromInt(1));
+			case 2:
+				diffmechSpr.playAnim(CoolUtil.mechDifficultyFromInt(2));
+		}
+
+		diffmechSpr.x = diffmechOrigX - 20;
+
+		if (diffmechTween != null)
+			diffmechTween.cancel();
+
+		diffmechTween = FlxTween.tween(diffmechSpr, {x: diffmechOrigX}, 0.2, {ease: FlxEase.quadOut});
+	}
+
 	override function update(elapsed:Float)
 	{
 		// scoreText.setFormat('VCR OSD Mono', 32);
@@ -392,6 +427,14 @@ class StoryMenuState extends MusicBeatState
 				leftArrow.animation.play('press');
 			else
 				leftArrow.animation.play('idle');
+
+			if (FlxG.keys.pressed.SHIFT) //holding shift while changing diffiuclty, change mech diff
+			{
+				if (controls.UI_RIGHT)
+					changeMechDifficulty(-1);
+				if (controls.UI_LEFT)
+					changeMechDifficulty(1);
+			}
 
 			if (controls.UI_RIGHT_P)
 				changeDifficulty(1);
