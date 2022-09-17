@@ -26,6 +26,7 @@ class StartupVideo extends FlxState {
 
             (new FlxVideo(Paths.video('intro'))).finishCallback = function() {
                 remove(bg);
+                TitleState.seenVideo = true;
                 FlxG.switchState(new TitleState());
             }
             return;
