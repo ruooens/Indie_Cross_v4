@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import openfl.utils.Assets;
+import flixel.FlxState;
 
 #if VIDEOS_ALLOWED
 import FlxVideo;
