@@ -317,6 +317,7 @@ class MainMenuState extends MusicBeatState
 			case 'freeplay':
 				MusicBeatState.switchState(new FreeplaySelectState());
 			case 'options':
+				FlxG.sound.music.stop();
 				LoadingState.loadAndSwitchState(new options.OptionsState());
 			case 'credits':
 				MusicBeatState.switchState(new CreditsState());	

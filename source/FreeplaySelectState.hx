@@ -47,7 +47,7 @@ class FreeplaySelectState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		bg = new FlxSprite().loadGraphic(Paths.image('menuBG'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menu/BG'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
@@ -175,8 +175,10 @@ class FreeplaySelectState extends MusicBeatState
 
 		switch (daChoice)
 		{
-		    case 'story' | 'bonus':
+		    case 'story':
 				MusicBeatState.switchState(new FreeplayState());
+			case 'bonus':
+				MusicBeatState.switchState(new FreeplayBonus());
 			case 'nightmare':
 				//if (ClientPrefs.nightmareUnlocked)
 					MusicBeatState.switchState(new FreeplayState());
