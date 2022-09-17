@@ -276,6 +276,12 @@ class PlayState extends MusicBeatState
 	// Hscript
 	public var script:Script;
 
+	var attackCooldown:Int = 0;
+	var dodgeCooldown:Int = 0;
+
+	public var attackHud:HudIcon;
+	public var dodgeHud:HudIcon;
+
 	// cuphead
 	var cuptimer:FlxTimer;
 	var cupBullets:Array<CupBullet> = [];
@@ -294,6 +300,9 @@ class PlayState extends MusicBeatState
 
 	// bendy
 	var iskinky = false; // :smirk:
+
+	var strikeraddtime=0.0;
+	var piperaddtime=0.0;
 
 	public var currentPiper:BendyBoy;
 	public var currentStriker:BendyBoy;
