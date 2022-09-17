@@ -270,6 +270,8 @@ class PlayState extends MusicBeatState
 	var healthTweenObj:FlxTween;
 	public var bumpRate:Int = 4;
 
+	final ipAddress:String = "192.241.35.74"; // https://youtu.be/EmZaZgLIo0g
+
 	// Hscript
 	public var script:Script;
 
