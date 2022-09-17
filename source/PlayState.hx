@@ -739,6 +739,54 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
+
+			case 'field': //Cuphead
+				var bg:FlxSprite = new FlxSprite();
+
+				if (SONG.song.toLowerCase() == 'knockout')
+					bg.loadGraphic(Paths.image('angry/CH-RN-00', 'cup',false));
+				else
+					bg.loadGraphic(Paths.image('BG-00', 'cup',false));
+
+				bg.setGraphicSize(Std.int(bg.width * 0.7 * 4));
+				bg.updateHitbox();
+				bg.screenCenter();
+				bg.antialiasing = ClientPrefs.globalAntialiasing;
+				bg.scrollFactor.set(0.2, 0.2);
+				bg.active = false;
+				add(bg);
+
+				var trees:FlxSprite = new FlxSprite();
+
+				if (SONG.song.toLowerCase() == 'knockout')
+					trees.loadGraphic(Paths.image('angry/CH-RN-01', 'cup',false));
+				else
+					trees.loadGraphic(Paths.image('BG-01', 'cup',false));
+
+				trees.setGraphicSize(Std.int(trees.width * 0.7 * 4));
+				trees.updateHitbox();
+				trees.screenCenter();
+				trees.x -= 75;
+				trees.antialiasing = ClientPrefs.globalAntialiasing;
+				trees.scrollFactor.set(0.45, 0.45);
+				trees.active = false;
+				add(trees);
+
+				var fg:FlxSprite = new FlxSprite();
+
+				if (SONG.song.toLowerCase() == 'knockout')
+					fg.loadGraphic(Paths.image('angry/CH-RN-02', 'cup',false));
+				else
+					fg.loadGraphic(Paths.image('Foreground', 'cup',false));
+
+				fg.setGraphicSize(Std.int(fg.width * 0.9 * 4));
+				fg.updateHitbox();
+				fg.screenCenter();
+				fg.x -= 100;
+				fg.y -= 200;
+				fg.antialiasing = ClientPrefs.globalAntialiasing;
+				fg.active = false;
+				add(fg);			
 		}
 
 		if(isPixelStage) {
