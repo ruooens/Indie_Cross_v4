@@ -29,7 +29,7 @@ class StartupVideo extends FlxState {
             }
             return;
         } else {
-            FlxG.log.warn('Couldnt find video file: ' + fileName);
+            FlxG.log.warn('Couldnt find video file');
             FlxG.switchState(new TitleState());
         }
     }
