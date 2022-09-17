@@ -26,7 +26,7 @@ using StringTools;
 
 class FreeplayBonus extends MusicBeatState
 {
-	var songs:Array<SongMetadata> = [];
+	var songs:Array<SongMetadataBonus> = [];
 
 	var selector:FlxText;
 	private static var curSelected:Int = 0;
@@ -174,7 +174,7 @@ class FreeplayBonus extends MusicBeatState
 
 	public function addSong(songName:String, weekNum:Int, songCharacter:String, color:Int)
 	{
-		songs.push(new SongMetadata(songName, weekNum, songCharacter, color));
+		songs.push(new SongMetadataBonus(songName, weekNum, songCharacter, color));
 	}
 
 	var instPlaying:Int = -1;
@@ -426,7 +426,7 @@ class FreeplayBonus extends MusicBeatState
 	}
 }
 
-class SongMetadata
+class SongMetadataBonus
 {
 	public var songName:String = "";
 	public var week:Int = 0;
