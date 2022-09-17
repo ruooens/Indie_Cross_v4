@@ -85,7 +85,7 @@ class CreditsState extends MusicBeatState
 			['kawaisprite',			'kawaisprite',		"Composer of Friday Night Funkin'",						'https://twitter.com/kawaisprite',		'6475F3'],
 			[''],
 			["Indie Cross PE Source Code"],
-			['LeviXD',              'levixd',           "Coder(Me!!)",                                           'https://github.com/LEVIXDDLMAO',      'C30085'], // cool person :)
+			['LeviXD',              'levixd',           "Coder Levi didnt do anything it was just memehoovy levi is dumb lol",      'https://github.com/LEVIXDDLMAO',      'C30085'], // cool person :)
 			['MemeHoovy',           'memehoovy',        "A smart person<3",                                      'https://twitter.com/meme_hoovy',      'C30085']
 
 		];
