@@ -745,9 +745,9 @@ class PlayState extends MusicBeatState
 				var bg:FlxSprite = new FlxSprite();
 
 				if (SONG.song.toLowerCase() == 'knockout')
-					bg.loadGraphic(Paths.image('angry/CH-RN-00', 'weekcup',false));
+					bg.loadGraphic(Paths.image('angry/CH-RN-00', 'weekcup'));
 				else
-					bg.loadGraphic(Paths.image('BG-00', 'weekcup',false));
+					bg.loadGraphic(Paths.image('BG-00', 'weekcup'));
 
 				bg.setGraphicSize(Std.int(bg.width * 0.7 * 4));
 				bg.updateHitbox();
@@ -760,9 +760,9 @@ class PlayState extends MusicBeatState
 				var trees:FlxSprite = new FlxSprite();
 
 				if (SONG.song.toLowerCase() == 'knockout')
-					trees.loadGraphic(Paths.image('angry/CH-RN-01', 'weekcup',false));
+					trees.loadGraphic(Paths.image('angry/CH-RN-01', 'weekcup'));
 				else
-					trees.loadGraphic(Paths.image('BG-01', 'weekcup',false));
+					trees.loadGraphic(Paths.image('BG-01', 'weekcup'));
 
 				trees.setGraphicSize(Std.int(trees.width * 0.7 * 4));
 				trees.updateHitbox();
@@ -776,9 +776,9 @@ class PlayState extends MusicBeatState
 				var fg:FlxSprite = new FlxSprite();
 
 				if (SONG.song.toLowerCase() == 'knockout')
-					fg.loadGraphic(Paths.image('angry/CH-RN-02', 'weekcup',false));
+					fg.loadGraphic(Paths.image('angry/CH-RN-02', 'weekcup'));
 				else
-					fg.loadGraphic(Paths.image('Foreground', 'weekcup',false));
+					fg.loadGraphic(Paths.image('Foreground', 'weekcup'));
 
 				fg.setGraphicSize(Std.int(fg.width * 0.9 * 4));
 				fg.updateHitbox();
