@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: htmlBuild
+name: IndieCrossHTMLbuild
 
 # Controls when the action will run. 
 on:
@@ -44,9 +44,9 @@ jobs:
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
       - name: Compile
-        run: haxelib run lime build Project.xml html5 --app-version="4.0.0-${{ github.run_id}}"
+        run: haxelib lime test html5
       - name: Publish Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: htmlBuild
+          name: IndieCrossPE
           path: export/release/html5/bin
