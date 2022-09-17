@@ -54,7 +54,7 @@ class FreeplaySelectState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		story = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplayselect/story'));
+		story = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplay/story'));
 		menuItems.add(story);
 		story.scrollFactor.set();
 		story.antialiasing = ClientPrefs.globalAntialiasing;
@@ -63,7 +63,7 @@ class FreeplaySelectState extends MusicBeatState
 		story.x -= 200;
 		story.alpha = 0.60;
 
-		bonus = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplayselect/bonus'));
+		bonus = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplay/bonus'));
 		menuItems.add(bonus);
 		bonus.scrollFactor.set();
 		bonus.antialiasing = ClientPrefs.globalAntialiasing;
@@ -72,7 +72,10 @@ class FreeplaySelectState extends MusicBeatState
 		bonus.x -= 200;
 		bonus.alpha = 0.60;
 
-		nightmare = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplayselect/nightmare'));
+		//if (ClientPrefs.nightmareUnlocked)
+		nightmare = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplay/nightmare'));
+		//else
+			//nightmare = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplay/locked'));
 		menuItems.add(nightmare);
 		nightmare.scrollFactor.set();
 		nightmare.antialiasing = ClientPrefs.globalAntialiasing;
@@ -81,7 +84,7 @@ class FreeplaySelectState extends MusicBeatState
 		nightmare.x -= 200;
 		nightmare.alpha = 0.60;
 
-		storySplash = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplayselect/storySplash'));
+		storySplash = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplay/storySplash'));
 		storySplash.scrollFactor.set();
 		storySplash.antialiasing = ClientPrefs.globalAntialiasing;
 		storySplash.setGraphicSize(Std.int(storySplash.width * 0.7));
@@ -90,7 +93,7 @@ class FreeplaySelectState extends MusicBeatState
 		storySplash.alpha = 0;
 		add(storySplash);	
 	
-		bonusSplash = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplayselect/bonusSplash'));
+		bonusSplash = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplay/bonusSplash'));
 		bonusSplash.scrollFactor.set();
 		bonusSplash.antialiasing = ClientPrefs.globalAntialiasing;
 		bonusSplash.setGraphicSize(Std.int(bonusSplash.width * 0.7));
@@ -99,7 +102,7 @@ class FreeplaySelectState extends MusicBeatState
 		bonusSplash.alpha = 0;
 		add(bonusSplash);	
 
-		nightmareSplash = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplayselect/nightmareSplash'));
+		nightmareSplash = new FlxSprite(-100, -400).loadGraphic(Paths.image('freeplay/nightmareSplash'));
 		nightmareSplash.scrollFactor.set();
 		nightmareSplash.antialiasing = ClientPrefs.globalAntialiasing;
 		nightmareSplash.setGraphicSize(Std.int(nightmareSplash.width * 0.7));
@@ -109,10 +112,6 @@ class FreeplaySelectState extends MusicBeatState
 		add(nightmareSplash);	
 
 		changeItem();
-
-		#if android
-		addVirtualPad(LEFT_RIGHT, A_B);
-		#end
 
 		super.create();
 	}
@@ -164,8 +163,8 @@ class FreeplaySelectState extends MusicBeatState
 				{
 					FlxTween.tween(nightmareSplash, {alpha: 1}, 0.1, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) { FlxTween.tween(nightmareSplash, {alpha: 0}, 0.4, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) { goToState(); }}); }});
 				}
-				}
 			}
+		}
 
 		super.update(elapsed);
 	}
@@ -176,14 +175,16 @@ class FreeplaySelectState extends MusicBeatState
 
 		switch (daChoice)
 		{
-		    case 'story':
-				MusicBeatState.switchState(new FreeplayState());
-			case 'bonus':
+		    case 'story' | 'bonus':
 				MusicBeatState.switchState(new FreeplayState());
 			case 'nightmare':
-				MusicBeatState.switchState(new FreeplayState());
+				//if (ClientPrefs.nightmareUnlocked)
+					MusicBeatState.switchState(new FreeplayState());
+				/*else
+					FlxG.sound.play(Paths.sound('weekDeny'));
+				    FlxG.camera.shake(0.01, 0.02);*/
+		}
 	}
-}
 	public function changeItem(huh:Int = 0)
 	{
 		curSelected += huh;
@@ -196,26 +197,26 @@ class FreeplaySelectState extends MusicBeatState
 		switch (optionShit[curSelected])
 		{
 			case 'story':
-			  story.alpha = 1;
+			 	story.alpha = 1;
 				bonus.alpha = 0.6; 
 				nightmare.alpha = 0.6;
-curSelectedStory = true;
-curSelectedNightmare = false;
-curSelectedBonus = false;
+				curSelectedStory = true;
+				curSelectedNightmare = false;
+				curSelectedBonus = false;
 			case 'bonus':
 				bonus.alpha = 1;
 				story.alpha = 0.6;
 				nightmare.alpha = 0.6;
-curSelectedStory = false;
-curSelectedNightmare = false;
-curSelectedBonus = true;
+				curSelectedStory = false;
+				curSelectedNightmare = false;
+				curSelectedBonus = true;
 			case 'nightmare':
 				bonus.alpha = 0.6;
 				story.alpha = 0.6;
 				nightmare.alpha = 1;
-curSelectedStory = false;
-curSelectedNightmare = true;
-curSelectedBonus = false;
+				curSelectedStory = false;
+				curSelectedNightmare = true;
+				curSelectedBonus = false;
 		}
 	}
 }
