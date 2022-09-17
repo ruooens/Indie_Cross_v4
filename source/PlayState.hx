@@ -153,7 +153,7 @@ class PlayState extends MusicBeatState
 
 	private var healthBarBG:AttachedSprite;
 	public var healthBar:FlxBar;
-	private var healthBarBGOverlay:AttachedSprite;
+	private var healthBarBGOverlay:FlxSprite;
 	var songPercent:Float = 0;
 
 	private var timeBarBG:AttachedSprite;
@@ -890,7 +890,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'field' | 'devilHall':
 				healthBarBG.alpha = 0.0;
-				healthBarBGOverlay = new AttachedSprite(0, FlxG.height * 0.8565);
+				healthBarBGOverlay = new FlxSprite(0, FlxG.height * 0.8565);
 				healthBarBGOverlay.loadGraphic(Paths.image('healthbar/cuphealthbar', 'preload'));
 				healthBarBGOverlay.y += 15;
 				healthBar.y += 15;
