@@ -857,17 +857,17 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) strumLine.y = FlxG.height - 150;
 		strumLine.scrollFactor.set();
 
-		underlayPlayer = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.BLACK);
-		underlayPlayer.scrollFactor.set();
-		underlayPlayer.alpha = ClientPrefs.underlayAlpha;
-		// underlayPlayer.visible = false;
-		add(underlayPlayer);
+		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2, FlxColor.BLACK);
+		laneunderlayOpponent.alpha = ClientPrefs.underlayAlpha / 100;
+		laneunderlayOpponent.scrollFactor.set();
 
-		underlayOpponent = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.BLACK);
-		underlayOpponent.scrollFactor.set();
-		underlayOpponent.alpha = ClientPrefs.underlayAlpha;
-		// underlayOpponent.visible = false;
-		add(underlayOpponent);
+		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2, FlxColor.BLACK);
+		laneunderlay.alpha = ClientPrefs.underlayAlpha / 100;
+		laneunderlay.scrollFactor.set();
+
+		if (!ClientPrefs.middleScroll)
+			add(laneunderlayOpponent);
+		add(laneunderlay);
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
@@ -1042,8 +1042,8 @@ class PlayState extends MusicBeatState
 		}
 
 		strumLineNotes.cameras = [camHUD];
-		underlayPlayer.cameras = [camHUD];
-		underlayOpponent.cameras = [camHUD];
+		laneunderlay.cameras = [camHUD];
+		laneunderlayOpponent.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
@@ -1485,6 +1485,7 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			generateStaticArrows(0);
 			generateStaticArrows(1);
+			updateLaneUnderlay();
 			for (i in 0...playerStrums.length) {
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
@@ -1915,6 +1916,22 @@ class PlayState extends MusicBeatState
 			strumLineNotes.add(babyArrow);
 			babyArrow.postAddedToGroup();
 		}
+	}
+
+	public function updateLaneUnderlay() // borrowed your code TheLeerName
+	{
+		var LU_X:Array<Array<Float>> = [ // scale, offset for X pos lane underlay
+			[1, 0],
+		];
+		var mania = 0;
+
+		laneunderlayOpponent.x = opponentStrums.members[0].x - 25 + LU_X[mania][1];
+		laneunderlayOpponent.scale.set(LU_X[mania][0], 1);
+		laneunderlayOpponent.screenCenter(Y);
+
+		laneunderlay.x = playerStrums.members[0].x - 25 + LU_X[mania][1];
+		laneunderlay.scale.set(LU_X[mania][0], 1);
+		laneunderlay.screenCenter(Y);
 	}
 
 	override function openSubState(SubState:FlxSubState)
