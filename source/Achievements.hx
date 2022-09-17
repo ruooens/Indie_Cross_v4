@@ -30,6 +30,12 @@ class Achievements {
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 
+	public static function unlockAchievement(name:String):Void {
+		FlxG.log.add('Completed achievement "' + name +'"');
+		achievementsMap.set(name, true);
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+	}
+
 	public static function isAchievementUnlocked(name:String) {
 		if(achievementsMap.exists(name) && achievementsMap.get(name)) {
 			return true;
@@ -57,9 +63,6 @@ class Achievements {
 				for (i in 0...savedStuff.length) {
 					achievementsMap.set(savedStuff[i], true);
 				}
-			}
-			if(henchmenDeath == 0 && FlxG.save.data.henchmenDeath != null) {
-				henchmenDeath = FlxG.save.data.henchmenDeath;
 			}
 		}
 	}
