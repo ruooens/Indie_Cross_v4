@@ -1142,41 +1142,28 @@ class PlayState extends MusicBeatState
 
 		// IM GONNA ATTEMPT THIS SHIT !!!! - volv
 
-		/*switch (curStage)
+		switch (curStage)
 		{
 			case 'field' | 'devilHall':
 				@:privateAccess {
-					healthBarBG = AttachedSprite('healthBar');
-					// healthBarBG.setGraphicSize(620, 28);
+					healthBarBG = new AttachedSprite('healthBar');
+					healthBarBG.setGraphicSize(620, 28);
 				}
 			case 'factory' | 'freaky-machine':
 				@:privateAccess {
-					healthBarBG = AttachedSprite('healthBar');
-					// healthBarBG.setGraphicSize(600, 36);
+					healthBarBG = new AttachedSprite('healthBar');
+					healthBarBG.setGraphicSize(600, 36);
 				}
 			case 'hall':
 				@:privateAccess {
-					healthBarBG = AttachedSprite('healthbar/sanshealthbar3', 'preload');
-					// healthBarBG.setGraphicSize(560, 25);
+					healthBarBG = new AttachedSprite('healthbar/sanshealthbar3', 'preload');
+					healthBarBG.setGraphicSize(560, 25);
 				}
 			default:
 				@:privateAccess {
-					healthBarBG = AttachedSprite('healthBar');
-					// healthBarBG.setGraphicSize(600);
+					healthBarBG = new AttachedSprite('healthBar');
+					healthBarBG.setGraphicSize(600);
 				}
-		}*/
-
-		if (curStage == 'field' || curStage == 'devilHall') {
-			healthBarBG = AttachedSprite('healthBar');
-		}
-		else if (curStage == 'factory' || curStage == 'freaky-machine'){
-			healthBarBG = AttachedSprite('healthBar');
-		}
-		else if (curStage == 'hall'){
-			healthBarBG = AttachedSprite('healthbar/sanshealthbar3', null, 'preload');
-		}
-		else {
-			healthBarBG = AttachedSprite('healthBar');
 		}
 
 		healthBarBG.y = FlxG.height * 0.89;
