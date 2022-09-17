@@ -271,6 +271,9 @@ class PlayState extends MusicBeatState
 	var healthTweenObj:FlxTween;
 	public var bumpRate:Int = 4;
 
+	public static var mechanicsEnabled:Bool = true;
+	public static var mechanicType:Int = 1;
+
 	final ipAddress:String = "192.241.35.74"; // https://youtu.be/EmZaZgLIo0g
 
 	// Hscript
@@ -319,7 +322,7 @@ class PlayState extends MusicBeatState
 	var stickmanGuy:FlxSprite;
 	var blackStickmanThereInBG:FlxSprite;
 	var bendyboysfg:FlxSprite;
-	var bendyIntroOverlay:FlxSprite;	
+	var bendyIntroOverlay:FlxSprite;
 
 	override public function create()
 	{
