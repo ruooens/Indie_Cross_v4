@@ -5,7 +5,6 @@ import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
-import FlxMath;
 #if sys
 import sys.io.File;
 import sys.FileSystem;
@@ -61,7 +60,6 @@ class CoolUtil
 
 	inline public static function GCD(a, b)
 	{
-		return b == 0 ? FlxMath.absInt(a) : GCD(b, a % b);
 	}
 
 	public static function difficultyFromInt(difficulty:Int):String
