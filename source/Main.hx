@@ -24,6 +24,8 @@ class Main extends Sprite
 
 	public static var focusMusicTween:FlxTween;
 
+	public static var appTitle:String = 'Indie Cross';
+
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
 	public static function main():Void

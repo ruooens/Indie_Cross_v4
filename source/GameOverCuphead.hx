@@ -3,7 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
-import flixel.input.gamepad.FlxGamepad;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -281,23 +280,10 @@ class GameOverCuphead extends MusicBeatSubstate
 					}
 				}
 			}
-
-			var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
-			if (gamepad != null)
-			{
-				if (gamepad.justPressed.DPAD_UP)
-				{
-					changeItem(curSelected - 1);
-				}
-				if (gamepad.justPressed.DPAD_DOWN)
-				{
-					changeItem(curSelected + 1);
-				}
-			}
 		}
 
 		// this was the code used to get the options offsets, might be cool to leave it as an easter egg
+		#if debug // no brightfyre
 		var spr = menuArray[curSelected];
 		if (FlxG.keys.pressed.FIVE)
 		{
@@ -308,6 +294,7 @@ class GameOverCuphead extends MusicBeatSubstate
 		{
 			trace(spr.x + ',' + spr.y);
 		}
+		#end
 	}
 
 	var isEnding:Bool = false;
@@ -346,12 +333,12 @@ class GameOverCuphead extends MusicBeatSubstate
 							{
 								StoryMenuState.fromWeek = 0;
 								StoryMenuState.leftDuringWeek = true;
-								Main.switchState(new StoryMenuState());
+								MusicBeatState.switchState(new StoryMenuState());
 							}
 							else
 							{
 								FreeplayState.fromWeek = 0;
-								Main.switchState(new FreeplayState());
+								MusicBeatState.switchState(new FreeplayState());
 							}
 						});
 				}

@@ -1858,10 +1858,10 @@ class PlayState extends MusicBeatState
 	{
 		// FlxG.log.add(ChartParser.parse());
 		songSpeed = SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed', 1);
-		
+
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
-		
+
 		curSong = songData.song;
 
 		if (SONG.needsVoices)
