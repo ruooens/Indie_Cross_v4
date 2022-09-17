@@ -53,6 +53,7 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import Script;
+import background.*;
 
 #if sys
 import sys.FileSystem;
@@ -274,6 +275,28 @@ class PlayState extends MusicBeatState
 
 	// Hscript
 	public var script:Script;
+
+	// cuphead
+	var cuptimer:FlxTimer;
+	var cupBullets:Array<CupBullet> = [];
+	var cupheadChaserMode:Bool = false;
+
+	var cupheadPewMode:Bool = false;
+	var cupheadPewFX:CupBullet;
+
+	var cardbar:FlxBar;
+	var cardfloat:Float = 0;
+	var didntdoanimyet:Bool = true;
+	var poped:Bool = true;
+
+	// sans
+	var ball:Balls; // testicles
+
+	// bendy
+	var iskinky = false; // :smirk:
+
+	public var currentPiper:BendyBoy;
+	public var currentStriker:BendyBoy;
 
 	override public function create()
 	{
