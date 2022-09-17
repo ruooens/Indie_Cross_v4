@@ -4,7 +4,7 @@ import flixel.FlxG;
 import openfl.utils.Assets;
 import flixel.FlxState;
 import flixel.FlxSprite;
-import flixel.utils.FlxColor;
+import flixel.util.FlxColor;
 
 #if VIDEOS_ALLOWED
 import FlxVideo;
