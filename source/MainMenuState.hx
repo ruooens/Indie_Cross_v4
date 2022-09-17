@@ -70,7 +70,7 @@ class MainMenuState extends MusicBeatState
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
-		if (FlxG.sound.music == null){
+		if (FlxG.sound.music == null || FlxG.music.sound.volume <= 0){
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 		}
 
