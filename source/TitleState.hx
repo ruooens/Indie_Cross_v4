@@ -53,7 +53,7 @@ class TitleState extends MusicBeatState
 
 	var resizeConstant:Float = 1.196;
 
-	public var seenVideo = false;
+	public static var seenVideo = false;
 
 	override public function create():Void
 	{
