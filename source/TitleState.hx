@@ -53,7 +53,7 @@ class TitleState extends MusicBeatState
 
 	var resizeConstant:Float = 1.196;
 
-	public static var seenVideo = false;
+	// public static var seenVideo = false;
 
 	override public function create():Void
 	{
@@ -197,10 +197,10 @@ class TitleState extends MusicBeatState
 			#end
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				if (!seenVideo){
-					FlxG.switchState(new StartupVideo());
-				}
-				else startIntro();
+				// if (!seenVideo){
+				// 	FlxG.switchState(new StartupVideo());
+				// }
+				startIntro();
 			});
 		}
 	}
