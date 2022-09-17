@@ -21,7 +21,7 @@ class FlxVideo extends FlxBasic {
 	public function new(name:String) {
 		super();
 
-		#if web
+		#if html5
 		var player:Video = new Video();
 		player.x = 0;
 		player.y = 0;
