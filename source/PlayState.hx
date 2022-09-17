@@ -1485,7 +1485,13 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			generateStaticArrows(0);
 			generateStaticArrows(1);
-			updateLaneUnderlay();
+			laneunderlay.x = playerStrums.members[0].x - 25;
+			laneunderlay.alpha = ClientPrefs.underlayAlpha / 100;
+			laneunderlay.screenCenter(Y);
+
+			laneunderlayOpponent.x = opponentStrums.members[0].x - 25;
+			laneunderlayOpponent.alpha = ClientPrefs.underlayAlpha / 100;
+			laneunderlayOpponent.screenCenter(Y);
 			for (i in 0...playerStrums.length) {
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
@@ -1908,22 +1914,6 @@ class PlayState extends MusicBeatState
 			strumLineNotes.add(babyArrow);
 			babyArrow.postAddedToGroup();
 		}
-	}
-
-	public function updateLaneUnderlay() // borrowed your code TheLeerName
-	{
-		var LU_X:Array<Array<Float>> = [ // scale, offset for X pos lane underlay
-			[1, 0],
-		];
-		var mania = 0;
-
-		laneunderlayOpponent.x = opponentStrums.members[0].x - 25 + LU_X[mania][1];
-		laneunderlayOpponent.scale.set(LU_X[mania][0], 1);
-		laneunderlayOpponent.screenCenter(Y);
-
-		laneunderlay.x = playerStrums.members[0].x - 25 + LU_X[mania][1];
-		laneunderlay.scale.set(LU_X[mania][0], 1);
-		laneunderlay.screenCenter(Y);
 	}
 
 	override function openSubState(SubState:FlxSubState)
