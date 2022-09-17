@@ -49,6 +49,19 @@ class CoolUtil
 	inline public static function boundTo(value:Float, min:Float, max:Float):Float {
 		return Math.max(min, Math.min(max, value));
 	}
+	
+	public static function truncateFloat(number:Float, precision:Int):Float
+	{
+		var num = number;
+		num = num * Math.pow(10, precision);
+		num = Math.round(num) / Math.pow(10, precision);
+		return num;
+	}
+
+	inline public static function GCD(a, b)
+	{
+		return b == 0 ? FlxMath.absInt(a) : GCD(b, a % b);
+	}	
 
 	@:extern inline public function error(s:String){
 		throw s;
