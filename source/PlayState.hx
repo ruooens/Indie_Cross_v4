@@ -153,6 +153,7 @@ class PlayState extends MusicBeatState
 
 	private var healthBarBG:AttachedSprite;
 	public var healthBar:FlxBar;
+	private var healthBarBGOverlay:AttachedSprite;
 	var songPercent:Float = 0;
 
 	private var timeBarBG:AttachedSprite;
@@ -884,6 +885,88 @@ class PlayState extends MusicBeatState
 		}
 		updateTime = showTime;
 
+		// overlaying healthbar or something idk (the way this is coded is fucking terrible i should clean it up sometime lmao)
+		switch (curStage)
+		{
+			case 'field' | 'devilHall':
+				healthBarBG.alpha = 0.0;
+				healthBarBGOverlay = new FlxSprite(0, FlxG.height * 0.8565);
+				healthBarBGOverlay.loadGraphic(Paths.image('healthbar/cuphealthbar', 'preload'));
+				healthBarBGOverlay.y += 15;
+				healthBar.y += 15;
+				if (!cpuControlled)
+					add(healthBarBGOverlay);
+				healthBarBGOverlay.updateHitbox();
+
+				if (ClientPrefs.downScroll)
+				{
+					healthBarBGOverlay.y = 30;
+					healthBar.y = 45;
+				}
+
+				healthBarBGOverlay.screenCenter(X);
+				healthBarBGOverlay.scrollFactor.set(0, 0);
+
+			/*case 'factory' | 'freaky-machine':
+				healthBarBG.alpha = 0.0;
+				healthBarBGOverlay = new FlxSprite(0, FlxG.height * 0.77);
+				healthBarBGOverlay.loadGraphic(Paths.image('healthbar/bendyhealthbar', 'preload'));
+				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+					add(healthBarBGOverlay);
+				healthBarBGOverlay.updateHitbox();
+
+				if (PlayStateChangeables.useDownscroll)
+					healthBarBGOverlay.y = -27;
+
+				healthBarBGOverlay.screenCenter(X);
+				healthBarBGOverlay.scrollFactor.set(0, 0);
+
+			case 'hall':
+				healthBarBG.x -= 16;
+				healthBarBGOverlay = new FlxSprite(0, FlxG.height * 0.77);
+				healthBarBGOverlay.loadGraphic(Paths.image('healthbar/sanshealthbar1', 'preload'));
+				healthBarBGOverlay.y += 94;
+				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+					add(healthBarBGOverlay);
+				healthBarBGOverlay.updateHitbox();
+
+				if (PlayStateChangeables.useDownscroll)
+					healthBarBGOverlay.y = 50;
+
+				//healthBarBGOverlay.screenCenter(X);
+				healthBarBGOverlay.scrollFactor.set(0, 0);
+				healthBarBGOverlay.x = healthBarBG.x - 123;
+				healthMax = new FlxSprite(healthBarBGOverlay.x, healthBarBGOverlay.y);
+				healthMax.loadGraphic(Paths.image('healthbar/sanshealthbar2', 'preload'));
+				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+					add(healthMax);
+				healthBarBGOverlay.updateHitbox();
+
+				if (PlayStateChangeables.useDownscroll)
+					healthMax.y = 50;
+				healthMax.screenCenter(X);
+				healthMax.scrollFactor.set(0, 0);
+				healthMax.cameras = [camHUD];
+
+				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+					add(healthBarBGOverlay);
+				healthBar = new FlxBar(healthBarBG.x, healthBarBG.y, LEFT_TO_RIGHT, Std.int(healthBarBG.width), Std.int(healthBarBG.height), this,
+					'health', 0, 2);
+				healthBar.createFilledBar(0x00FFFFFF, FlxColor.YELLOW);
+
+				//healthBarBG.alpha = 0.0;
+
+				krBar = new FlxBar(healthBar.x, healthBar.y, LEFT_TO_RIGHT, Std.int(healthBar.width), Std.int(healthBar.height), this,
+				'kr', 0,2); 
+				krBar.scrollFactor.set(0, 0);
+				krBar.createFilledBar(FlxColor.RED, 0xFFff00ff);
+				krBar.cameras = [camHUD];
+
+				if (((PlayStateChangeables.botPlay && MainMenuState.showcase) || !PlayStateChangeables.botPlay))
+					add(krBar);
+					add(healthBar); // add the healthbar OVER this bg*/
+		}
+
 		timeBarBG = new AttachedSprite('timeBar');
 		timeBarBG.x = timeTxt.x;
 		timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
@@ -1499,7 +1582,6 @@ class PlayState extends MusicBeatState
 			for (i in 0...opponentStrums.length) {
 				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
-				//if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
 			}
 
 			startedCountdown = true;
