@@ -4181,11 +4181,9 @@ class PlayState extends MusicBeatState
 						inkProg = 0;
 					}
 				});
-	
 				//inkProg = 0;
-	
 			}
-			);
+		);
 	}
 
 	function inkFade() // called from update, containing it here for easy editing
