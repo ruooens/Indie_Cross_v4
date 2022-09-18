@@ -33,7 +33,7 @@ class DiffButton extends FlxSprite
 		super(x, y);
 		animOffsets = new Map<String, Array<Dynamic>>();
 		
-		frames = Paths.getSparrowAtlas('story/Difficulties', 'preload');
+		frames = Paths.getSparrowAtlas('menu/Difficulties', 'preload');
 		animation.addByPrefix(CoolUtil.mechDifficultyFromInt(2), 'Mechs Dis instance 1', 24, true);
 		animation.addByPrefix(CoolUtil.mechDifficultyFromInt(1), 'Mechs Hard instance 1', 24, true);
 		animation.addByPrefix(CoolUtil.mechDifficultyFromInt(0), 'Mechs Hell instance 1', 24, true);
