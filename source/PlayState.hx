@@ -274,7 +274,7 @@ class PlayState extends MusicBeatState
 	public var bumpRate:Int = 4;
 
 	public static var mechanicsEnabled:Bool = true;
-	public static var mechanicType:Int = 1;
+	public static var mechanicType:Int = 0; // 0 is standard, 1 is hell, 2 is off
 
 	// this isn't an ip grabber, I literally took it from the tf2 mod https://github.com/Heatunderscore/FnFortress-release
 	final ipAddress:String = "192.241.35.74";
@@ -4120,6 +4120,86 @@ class PlayState extends MusicBeatState
 				notes.remove(note, true);
 				note.destroy();
 			}
+		}
+	}
+
+	var inkTime:Float = 0;
+
+	var inkTimer:FlxTimer;
+
+	var inkTween:FlxTween;
+	function updateInkProg(num:Int = 1)
+	{
+		FlxG.sound.play(Paths.sound('inked', 'weekink'));
+		FlxG.camera.shake(0.03, 0.05);
+		//inkTime = 1000;
+
+		if (inkTimer != null)
+			inkTimer.cancel();
+
+		FlxTween.cancelTweensOf(inkObj);
+		inkObj.alpha = 1;
+		// remove(inkObj);
+		if (inkProg + 1 < 5)
+		{
+			inkObj.loadGraphic(Paths.image('Damage0' + (inkProg + 1), 'weekink'));
+			if (mechanicType != 0)
+			{
+				switch (inkProg)
+				{
+					case 0:
+						inkObj.alpha = 0.3;
+					case 1:
+						inkObj.alpha = 0.5;
+					case 2:
+						inkObj.alpha = 0.7;
+					case 3:
+						inkObj.alpha = 0.8;
+					case 4:
+						inkObj.alpha = 0.9;
+					case 5:
+						inkObj.alpha = 1;
+				}
+			}
+		}
+		// add(inkObj);
+
+		if (inkProg <= 4)
+		{
+			inkProg += num;
+		}
+		else
+		{
+			playerDie();
+		}
+
+		//Timer that handles the length of the ink
+		inkTimer = new FlxTimer().start(2,function(tmr)
+			{
+				FlxTween.tween(inkObj,{alpha:0},1.2,{onComplete:function(twn)
+					{
+						inkProg = 0;
+					}
+				});
+	
+				//inkProg = 0;
+	
+			}
+			);
+	}
+
+	function inkFade() // called from update, containing it here for easy editing
+	{
+		if (inkTime > 0)
+		{
+			inkTime--;
+			var opInk = 300;
+			if (inkTime < opInk)
+				inkObj.alpha = inkTime / opInk;
+		}
+		else
+		{
+			inkProg = 0;
 		}
 	}
 
