@@ -399,7 +399,48 @@ class StoryMenuState extends MusicBeatState
 
 		scoreText.text = "WEEK SCORE:" + lerpScore;
 
-		// FlxG.watch.addQuick('font', scoreText.font);
+		if (curWeek == 0)
+		{
+			week1.visible = false;
+			week1s.visible = true;
+			week2.visible = true;
+			week2s.visible = false;
+			week3.visible = true;
+			week3s.visible = false;
+
+			bg.visible = true;
+			cuphead.visible = true;
+			sans.visible = false;
+			bendy.visible = false;
+		}
+		else if (curWeek == 1)
+		{
+			week1.visible = true;
+			week1s.visible = false;
+			week2.visible = false;
+			week2s.visible = true;
+			week3.visible = true;
+			week3s.visible = false;
+
+			bg.visible = false;
+			cuphead.visible = false;
+			sans.visible = true;
+			bendy.visible = false;
+		}
+		else if (curWeek == 2)
+		{
+			week1.visible = true;
+			week1s.visible = false;
+			week2.visible = true;
+			week2s.visible = false;
+			week3.visible = false;
+			week3s.visible = true;
+
+			bg.visible = false;
+			cuphead.visible = false;
+			sans.visible = false;
+			bendy.visible = true;
+		}
 
 		difficultySelectors.visible = !weekIsLocked(curWeek);
 
