@@ -13,8 +13,6 @@ import sys.FileSystem;
 import openfl.utils.Assets;
 #end
 
-using hx.strings.Strings;
-
 using StringTools;
 
 class CoolUtil
