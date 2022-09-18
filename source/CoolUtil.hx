@@ -85,7 +85,7 @@ class CoolUtil
 	{
 		if (!LibraryAssets.textExists(path))
 		{
-			Debug.logError('Could not load data from non-existant file ${path}');
+			// Debug.logError('Could not load data from non-existant file ${path}');
 			return [];
 		}
 		var rawText:String = Assets.getText(path);

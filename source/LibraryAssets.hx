@@ -19,7 +19,7 @@
  * Contains static utility functions used for metadata about asset libraries,
  * such as whether an asset or library exists.
  */
-package funkin.util.assets;
+package;
 
 import openfl.Assets as OpenFlAssets;
 
