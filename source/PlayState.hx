@@ -4027,7 +4027,7 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim(animToPlay, true);
 						updateInkProg();
 					    ClientPrefs.inkshit += 1;
-						ClientPrefs.saveSettings(); // probably not the best way to do this but whatever
+						ClientPrefs.saveSettings(); // probably not the best way to do this but whatever, it should work for now
 						FlxG.sound.play(Paths.sound('inked', 'bendy'));
 						InkCurrentlyOnScreen = true;						
 				}
