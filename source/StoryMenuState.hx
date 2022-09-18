@@ -42,7 +42,7 @@ class DiffButton extends FlxSprite // mechanics option
 		addOffset(CoolUtil.mechDifficultyFromInt(1), 0, 0);
 		addOffset(CoolUtil.mechDifficultyFromInt(0), 10, 30);
 
-		if (frames != null && frames.length > 0) {
+		if (frames != null) {
 			playAnim(CoolUtil.mechDifficultyFromInt(StoryMenuState.curMechDifficulty), true);
 		}
 
