@@ -22,7 +22,7 @@ import flixel.tweens.FlxEase;
 
 using StringTools;
 
-class DiffButton extends FlxSprite
+class DiffButton extends FlxSprite // mechanics option
 {
 	public var animOffsets:Map<String, Array<Dynamic>>;
 	public var daZoom:Float = 1;
