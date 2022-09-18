@@ -4025,8 +4025,9 @@ class PlayState extends MusicBeatState
 						}
 					case 'Ink Note':
 						boyfriend.playAnim(animToPlay, true);
-						hitINKnote();
-					    InkOnScreen += 1;
+						updateInkProg();
+					    ClientPrefs.inkshit += 1;
+						ClientPrefs.saveSettings(); // probably not the best way to do this but whatever
 						FlxG.sound.play(Paths.sound('inked', 'bendy'));
 						InkCurrentlyOnScreen = true;						
 				}

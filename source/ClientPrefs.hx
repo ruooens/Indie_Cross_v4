@@ -43,6 +43,7 @@ class ClientPrefs {
 
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; //i was bored, okay?
+	public static var inkshit:Int = 0;
 	
 	public static var ratingOffset:Int = 0;
 	public static var sickWindow:Int = 45;
@@ -113,6 +114,9 @@ class ClientPrefs {
 		FlxG.save.data.safeFrames = safeFrames;
 		FlxG.save.data.gameplaySettings = gameplaySettings;
 		FlxG.save.data.controllerMode = controllerMode;
+
+		// non options
+		FLxG.save.data.inkshit = inkshit;
 	
 		FlxG.save.flush();
 
@@ -216,6 +220,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.underlayAlpha != null) {
 			underlayAlpha = FlxG.save.data.underlayAlpha;
+		}
+		if(FlxG.save.data.inkshit != null) {
+			inkshit = FlxG.save.data.inkshit;
 		}
 		if(FlxG.save.data.gameplaySettings != null)
 		{
