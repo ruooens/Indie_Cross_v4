@@ -1,1 +1,4 @@
 weekcup
+weeksans
+weekink
+weekbouns
