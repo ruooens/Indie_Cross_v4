@@ -126,6 +126,14 @@ class Note extends FlxSprite
 					colorSwap.brightness = 0;
 					hitCausesMiss = false;
 					missHealth = 1.0;
+				case 'InkNote':
+					ignoreNote = true;
+					reloadNote('INK');
+					noteSplashDisabled = true;
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					hitCausesMiss = true;
 				case 'No Animation':
 					noAnimation = true;
 			}

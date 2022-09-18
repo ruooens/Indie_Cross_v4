@@ -185,6 +185,7 @@ class PlayState extends MusicBeatState
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
+	private var camOVERLAY:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
@@ -370,13 +371,16 @@ class PlayState extends MusicBeatState
 
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
+		camOVERLAY = new FlxCamera();
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
+		camOVERLAY.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camOther);
+		FlxG.cameras.add(camOVERLAY);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 
 		FlxCamera.defaultCameras = [camGame];
@@ -912,6 +916,34 @@ class PlayState extends MusicBeatState
 			gf.scrollFactor.set(0.95, 0.95);
 			gfGroup.add(gf);
 			startCharacterLua(gf.curCharacter);
+		}
+
+		if (curStage == 'factory')
+		{
+			inkObj = new FlxSprite().loadGraphic(Paths.image('Damage01', 'bendy'));
+			inkObj.setGraphicSize(Std.int(FlxG.width / camOVERLAY.zoom), Std.int(FlxG.height / camOVERLAY.zoom));
+			inkObj.updateHitbox();
+			inkObj.screenCenter();
+			inkObj.antialiasing = ClientPrefs.globalAntialiasing;
+			inkObj.alpha = 0.0001;
+			inkObj.scrollFactor.set();
+			add(inkObj);
+
+			inkObj.cameras = [camOVERLAY];
+
+			// this is for unused flash notes
+			/*flashback = new FlxSprite();
+			flashback.frames = Paths.getSparrowAtlas('HorrorVision', 'bendy');
+			flashback.animation.addByPrefix('play', 'Add instance 1', 24, true);
+			flashback.setGraphicSize(Std.int(FlxG.width * 1.15));
+			flashback.updateHitbox();
+			flashback.screenCenter();
+			flashback.antialiasing = ClientPrefs.globalAntialiasing;
+			flashback.scrollFactor.set();
+			flashback.cameras = [camOVERLAY];
+			flashback.blend = BlendMode.ADD;
+			flashback.alpha = 0.0001;
+			add(flashback);*/
 		}
 
 		dad = new Character(0, 0, SONG.player2);
@@ -3991,6 +4023,12 @@ class PlayState extends MusicBeatState
 							boyfriend.playAnim('hurt', true);
 							boyfriend.specialAnim = true;
 						}
+					case 'Ink Note':
+						boyfriend.playAnim(animToPlay, true);
+						hitINKnote();
+					    InkOnScreen += 1;
+						FlxG.sound.play(Paths.sound('inked', 'bendy'));
+						InkCurrentlyOnScreen = true;						
 				}
 				
 				note.wasGoodHit = true;
