@@ -71,8 +71,32 @@ class CoolUtil
 		return mechDifficultyArray[mechDifficulty];
 	}
 
+	@:deprecated("Just don't use it")
 	@:extern inline public function error(s:String){
 		throw s;
+	}
+
+	/**
+	 * Given a text file path, load the file, clean it up, and split it into individual lines.
+	 * @param path The text file path to load.
+	 * @return A list of lines from that file.
+	 */
+	public static function loadLinesFromFile(path:String):Array<String>
+	{
+		if (!LibraryAssets.textExists(path))
+		{
+			Debug.logError('Could not load data from non-existant file ${path}');
+			return [];
+		}
+		var rawText:String = OpenFlAssets.getText(path);
+		var result:Array<String> = rawText.trim().split('\n');
+
+		for (i in 0...result.length)
+		{
+			result[i] = result[i].trim();
+		}
+
+		return result;
 	}
 
 	public static function coolTextFile(path:String):Array<String>
