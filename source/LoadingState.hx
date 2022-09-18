@@ -48,43 +48,7 @@ class LoadingState extends MusicBeatState
 	{
 		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
 		add(bg);
-		if (PlayState.SONG != null)
-		{
-			if (PlayState.SONG.song.toLowerCase() == "devils-gambit" || PlayState.SONG.song.toLowerCase() == "bad-time" || PlayState.SONG.song.toLowerCase() == "despair")
-			{
-				if (!FlxG.save.data.secretChars[5])
-				{
-					if (!FlxG.save.data.secretChars[6])
-					{
-						if (!FlxG.save.data.secretChars[7])
-						{
-							funkay.loadGraphic(Paths.getPath('images/nm/3', IMAGE));
-						}
-						else
-						{
-							funkay.loadGraphic(Paths.getPath('images/nm/2', IMAGE));
-						}
-					}
-					else
-					{
-						funkay.loadGraphic(Paths.getPath('images/nm/1', IMAGE));
-					}
-				}
-				else
-				{
-					funkay.loadGraphic(Paths.getPath('images/nm/0', IMAGE));
-				}
-			}
-			else
-			{
-				funkay.loadGraphic(Paths.getPath('images/Loading_screen', IMAGE));
-			}
-		}
-		else
-		{
-			funkay.loadGraphic(Paths.getPath('images/Loading_screen', IMAGE));
-		}		
-		// funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay.png', IMAGE));
+		funkay = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/funkay.png', IMAGE));
 		funkay.setGraphicSize(0, FlxG.height);
 		funkay.updateHitbox();
 		funkay.antialiasing = ClientPrefs.globalAntialiasing;
