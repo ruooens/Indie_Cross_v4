@@ -88,7 +88,7 @@ class CoolUtil
 			Debug.logError('Could not load data from non-existant file ${path}');
 			return [];
 		}
-		var rawText:String = OpenFlAssets.getText(path);
+		var rawText:String = Assets.getText(path);
 		var result:Array<String> = rawText.trim().split('\n');
 
 		for (i in 0...result.length)
