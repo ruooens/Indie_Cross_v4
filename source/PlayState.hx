@@ -124,7 +124,7 @@ class PlayState extends MusicBeatState
 
 	public var vocals:FlxSound;
 
-	public var dad:Character;
+	public var dad(get, never):Character;
 	public var gf:Character;
 	public var boyfriend:Boyfriend;
 
@@ -269,6 +269,10 @@ class PlayState extends MusicBeatState
 	
 	// Less laggy controls
 	private var keysArray:Array<Dynamic>;
+
+	function get_dad():Character {
+		return dad = new Character(0, 0, SONG.player2);
+	}
 
 	var healthTweenObj:FlxTween;
 	public var bumpRate:Int = 4;
@@ -946,7 +950,6 @@ class PlayState extends MusicBeatState
 			add(flashback);*/
 		}
 
-		dad = new Character(0, 0, SONG.player2);
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 		startCharacterLua(dad.curCharacter);
