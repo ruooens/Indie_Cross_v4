@@ -4024,7 +4024,7 @@ class PlayState extends MusicBeatState
 							boyfriend.specialAnim = true;
 						}
 					case 'Ink Note':
-						boyfriend.playAnim(animToPlay, true);
+						boyfriend.playAnim('hurt', true);
 						updateInkProg();
 					    ClientPrefs.inkshit += 1;
 						ClientPrefs.saveSettings(); // probably not the best way to do this but whatever, it should work for now
@@ -4170,7 +4170,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			playerDie();
+			doDeathCheck(true);
 		}
 
 		//Timer that handles the length of the ink

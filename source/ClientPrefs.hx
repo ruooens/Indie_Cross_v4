@@ -116,7 +116,7 @@ class ClientPrefs {
 		FlxG.save.data.controllerMode = controllerMode;
 
 		// non options
-		FLxG.save.data.inkshit = inkshit;
+		FlxG.save.data.inkshit = inkshit;
 	
 		FlxG.save.flush();
 

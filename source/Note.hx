@@ -142,7 +142,7 @@ class Note extends FlxSprite
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 					hitCausesMiss = true;
-					if (PlayState.mechanicType = 0 || PlayState.mechanicType = 2){
+					if (PlayState.mechanicType == 0 || PlayState.mechanicType == 2){
                         missHealth = 0.5; // I can't find the code for how much HP the shadow note takes
 					}
 					else {
