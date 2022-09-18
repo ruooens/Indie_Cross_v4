@@ -61,7 +61,7 @@ class OptionsState extends MusicBeatState
 
 		FlxG.sound.playMusic(Paths.music('settin'), 1, true);
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menu/BGwhite'));
 		bg.color = 0xFFea71fd;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
