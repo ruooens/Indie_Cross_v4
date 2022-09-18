@@ -1,6 +1,4 @@
 bf
-dad
-gf
 bf-ic
 BF_IC_Rain
 BF_IC_Cuphead
