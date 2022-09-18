@@ -116,7 +116,12 @@ class Note extends FlxSprite
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 					hitCausesMiss = true;
-					missHealth = 1.0;
+					if (PlayState.mechanicType == 0 || PlayState.mechanicType == 2){
+                        missHealth = 0.8;
+					}
+					else {
+						missHealth = 1.0;
+					}
 				case 'SansOrange':
 					ignoreNote = false;
 					reloadNote('OBONE');
@@ -125,7 +130,12 @@ class Note extends FlxSprite
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 					hitCausesMiss = false;
-					missHealth = 1.0;
+					if (PlayState.mechanicType == 0 || PlayState.mechanicType == 2){
+                        missHealth = 0.8;
+					}
+					else {
+						missHealth = 1.0;
+					}
 				case 'InkNote':
 					ignoreNote = true;
 					reloadNote('INK');
