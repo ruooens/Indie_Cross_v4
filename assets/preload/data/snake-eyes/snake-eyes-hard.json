@@ -4207,7 +4207,7 @@
 		],
 		"gfVersion": "gf",
 		"events": [],
-		"player3": null,
+		"player3": "gf",
 		"song": "Snake-Eyes",
 		"validScore": true,
 		"needsVoices": true,
