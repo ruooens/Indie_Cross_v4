@@ -8,7 +8,7 @@
 - Add all of indie cross achivements
 - Stages
 - Events ( Cuphead card, dodge attack, cuphead shooting, sans dodge, genoside route,( Burning in hell is gonna be fucking hard ) )
-- Fix songs not loading / working
+- Fix songs not loading / working (Might have something to do with the way they're parsed or something in Song.hx)
 
 ## DONE
  - Videos ( They didnt work )
