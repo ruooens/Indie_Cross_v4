@@ -12,4 +12,4 @@
 
 ## DONE
  - Videos ( They didnt work )
- - in story mode
+ - Mech options ( in story mode )
