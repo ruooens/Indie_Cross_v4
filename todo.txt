@@ -7,7 +7,7 @@
 - Add mech
 - Add all of indie cross achivements
 - Stages
-- Events ( Cuphead card, dodge attack, cuphead shooting )
+- Events ( Cuphead card, dodge attack, cuphead shooting, sans dodge, genoside route,( Burning in hell is gonna be fucking hard ) )
 - Fix songs not loading / working
 
 ## DONE
