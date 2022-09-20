@@ -3282,7 +3282,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player3": null,
+		"player3": "gf",
 		"song": "Snake-Eyes",
 		"stage": "field",
 		"needsVoices": true,
